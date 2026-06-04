@@ -37,8 +37,8 @@
 
     /* ── Sidebar ── */
     #sidebar {
-      width: 240px;
-      min-width: 240px;
+      width: 260px;
+      min-width: 260px;
       background: var(--navy);
       display: flex;
       flex-direction: column;
@@ -77,7 +77,9 @@
     }
     .nav-item:hover { color: #fff; background: var(--navy-mid); border-left-color: #3a4560; }
     .nav-item.active { color: #fff; background: #1e2540; border-left-color: var(--accent); }
-    .nav-num { font-size: 10px; font-weight: 700; color: var(--accent); min-width: 14px; margin-top: 2px; }
+    .nav-item.sub    { padding-left: 34px; font-size: 11.5px; }
+    .nav-item.subsub { padding-left: 50px; font-size: 11px; }
+    .nav-num { font-size: 10px; font-weight: 700; color: var(--accent); min-width: 20px; margin-top: 2px; flex-shrink: 0; }
 
     .sidebar-footer {
       margin-top: auto; padding: 14px 18px;
@@ -116,9 +118,10 @@
     .hero-sub { font-size: 13px; color: rgba(255,255,255,.6); max-width: 560px; line-height: 1.65; }
 
     /* ── Content ── */
-    .content { padding: 0 40px 60px; max-width: 860px; }
+    .content { padding: 0 40px 60px; max-width: 880px; }
 
-    .section { padding-top: 40px; }
+    .section    { padding-top: 40px; }
+    .subsection { padding-top: 28px; }
 
     .section-header {
       background: var(--navy); color: #fff;
@@ -126,11 +129,30 @@
       font-size: 14px; font-weight: 700;
       display: flex; align-items: center; gap: 10px;
     }
+    .subsection-header {
+      background: var(--navy-mid); color: #fff;
+      padding: 9px 16px; border-radius: 7px 7px 0 0;
+      font-size: 13px; font-weight: 700;
+      display: flex; align-items: center; gap: 10px;
+      border-left: 3px solid var(--accent);
+    }
+    .subsubsection-header {
+      background: var(--navy-light); color: var(--accent-lt);
+      padding: 8px 16px; border-radius: 7px 7px 0 0;
+      font-size: 12px; font-weight: 700;
+      display: flex; align-items: center; gap: 10px;
+      border-left: 3px solid var(--accent-lt);
+    }
     .sec-num {
       background: var(--accent); color: #fff;
       width: 22px; height: 22px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       font-size: 11px; font-weight: 800; flex-shrink: 0;
+    }
+    .sec-label {
+      font-size: 10px; font-weight: 800; color: var(--accent);
+      background: rgba(74,144,226,.15); border: 1px solid rgba(74,144,226,.3);
+      padding: 2px 7px; border-radius: 5px; flex-shrink: 0; white-space: nowrap;
     }
     .section-body {
       border: 1px solid var(--border); border-top: none;
@@ -190,52 +212,58 @@
       display: inline-block; padding: 1px 7px; border-radius: 8px;
       font-size: 10px; font-weight: 700;
     }
-    .badge-green { background: rgba(73,204,144,.2); color: #49cc90; border: 1px solid rgba(73,204,144,.3); }
-    .badge-blue  { background: rgba(74,144,226,.2);  color: #7ab8f5; border: 1px solid rgba(74,144,226,.3); }
-    .badge-red   { background: rgba(192,57,43,.2);   color: #f87171; border: 1px solid rgba(192,57,43,.3); }
+    .badge-green  { background: rgba(73,204,144,.2);  color: #49cc90; border: 1px solid rgba(73,204,144,.3); }
+    .badge-blue   { background: rgba(74,144,226,.2);  color: #7ab8f5; border: 1px solid rgba(74,144,226,.3); }
+    .badge-red    { background: rgba(192,57,43,.2);   color: #f87171; border: 1px solid rgba(192,57,43,.3); }
+    .badge-orange { background: rgba(234,179,8,.2);   color: #fbbf24; border: 1px solid rgba(234,179,8,.3); }
 
-    /* ── Factor grid ── */
-    .factor-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
-      margin: 14px 0;
+    /* ── MFA today comparison cards ── */
+    .compare-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 14px 0;
     }
-    .factor-card {
-      border-radius: 7px; border: 1px solid var(--border);
-      overflow: hidden;
-    }
-    .factor-card-header {
+    .compare-card { border-radius: 7px; border: 1px solid var(--border); overflow: hidden; }
+    .compare-card-header {
       padding: 8px 12px; font-size: 10px; font-weight: 700;
       letter-spacing: 0.6px; text-transform: uppercase;
     }
-    .factor-card-header.know  { background: rgba(192,57,43,.15);  color: #f87171; }
-    .factor-card-header.have  { background: rgba(74,144,226,.15); color: #7ab8f5; }
-    .factor-card-header.are   { background: rgba(73,204,144,.15); color: #49cc90; }
-    .factor-card-body { padding: 10px 12px; background: var(--bg-subtle); }
-    .factor-card-body p { font-size: 12px; color: #555; margin-bottom: 6px; }
-    .factor-item {
-      display: flex; align-items: flex-start; gap: 6px;
-      font-size: 12px; line-height: 1.5; color: #444;
-      padding: 3px 0;
-    }
-    .factor-item .dot {
-      width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-top: 5px;
-    }
-    .dot-red   { background: #f87171; }
-    .dot-blue  { background: #7ab8f5; }
-    .dot-green { background: #49cc90; }
-    .factor-item .sub { font-size: 11px; color: var(--muted); }
+    .compare-card-header.totp   { background: rgba(192,57,43,.15);  color: #f87171; }
+    .compare-card-header.otp    { background: rgba(234,179,8,.15);  color: #fbbf24; }
+    .compare-card-header.msauth { background: rgba(74,144,226,.15); color: #7ab8f5; }
+    .compare-card-body { padding: 10px 12px; background: var(--bg-subtle); }
+    .compare-card-body p { font-size: 12px; color: #555; margin-bottom: 6px; }
+    .ci { display: flex; align-items: flex-start; gap: 6px; font-size: 12px; line-height: 1.5; color: #444; padding: 3px 0; }
+    .ci .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+    .dot-red    { background: #f87171; }
+    .dot-yellow { background: #fbbf24; }
+    .dot-blue   { background: #7ab8f5; }
+    .dot-green  { background: #49cc90; }
+    .ci .sub { font-size: 11px; color: var(--muted); }
 
-    /* ── Verdict row ── */
+    /* ── Hardware tier grid ── */
+    .hw-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 14px 0; }
+    .hw-card { border-radius: 7px; border: 1px solid var(--border); overflow: hidden; }
+    .hw-card-header {
+      padding: 9px 14px; font-size: 10px; font-weight: 700;
+      letter-spacing: 0.6px; text-transform: uppercase;
+    }
+    .hw-card-header.app     { background: rgba(192,57,43,.15);  color: #f87171; }
+    .hw-card-header.yubikey { background: rgba(234,179,8,.15);  color: #fbbf24; }
+    .hw-card-header.sim     { background: rgba(73,204,144,.15); color: #49cc90; }
+    .hw-card-body { padding: 12px 14px; background: var(--bg-subtle); }
+    .hw-row { display: flex; gap: 8px; align-items: flex-start; font-size: 12px; padding: 4px 0; color: #444; line-height: 1.5; }
+    .hw-row .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+
+    /* ── Verdict rows ── */
     .verdict-row {
       display: flex; gap: 8px; align-items: center;
       padding: 8px 12px; border-radius: 5px;
       background: var(--navy); margin: 6px 0; font-size: 12px; color: var(--code-text);
     }
-    .verdict-row .vr-label { font-weight: 600; color: #fff; min-width: 160px; }
-    .verdict-row .vr-factor { font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 8px; }
-    .vr-have  { background: rgba(74,144,226,.25);  color: #7ab8f5; }
-    .vr-know  { background: rgba(192,57,43,.25);   color: #f87171; }
-    .vr-have-true { background: rgba(73,204,144,.25); color: #49cc90; }
+    .verdict-row .vr-label { font-weight: 600; color: #fff; min-width: 200px; }
+    .verdict-row .vr-factor { font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 8px; white-space: nowrap; }
+    .vr-know      { background: rgba(192,57,43,.25);   color: #f87171; }
+    .vr-partial   { background: rgba(234,179,8,.25);   color: #fbbf24; }
+    .vr-have-true { background: rgba(73,204,144,.25);  color: #49cc90; }
 
     /* reason-why pill */
     .why {
@@ -251,6 +279,7 @@
       .content { padding: 0 18px 40px; }
       .hero { padding: 28px 18px 24px; }
       .topbar { padding: 10px 18px; }
+      .compare-grid, .hw-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -265,13 +294,17 @@
         <div class="logo-sub">Microsoft EAM</div>
       </div>
     </div>
-    <div class="sidebar-label">Sections</div>
-    <a href="#sec0" class="nav-item active"><span class="nav-num">0</span>MFA Factor Framework</a>
-    <a href="#sec1" class="nav-item"><span class="nav-num">1</span>The Threat Model</a>
-    <a href="#sec2" class="nav-item"><span class="nav-num">2</span>How Authentication Works</a>
-    <a href="#sec3" class="nav-item"><span class="nav-num">3</span>Identity Signals</a>
-    <a href="#sec4" class="nav-item"><span class="nav-num">4</span>Trust Model &amp; Integration</a>
-    <a href="#sec5" class="nav-item"><span class="nav-num">5</span>Operational Considerations</a>
+    <div class="sidebar-label">Contents</div>
+
+    <a href="#sec1"   class="nav-item active"><span class="nav-num">1</span>Unibeam External MFA</a>
+    <a href="#sec1a"  class="nav-item sub">   <span class="nav-num">1.a</span>MFA Today</a>
+    <a href="#sec1b"  class="nav-item sub">   <span class="nav-num">1.b</span>Why Unibeam is Different</a>
+    <a href="#sec1b1" class="nav-item subsub"><span class="nav-num">1.b.1</span>App + Hardware Security</a>
+    <a href="#sec2"   class="nav-item">       <span class="nav-num">2</span>How Authentication Works</a>
+    <a href="#sec3"   class="nav-item">       <span class="nav-num">3</span>Identity Signals</a>
+    <a href="#sec4"   class="nav-item">       <span class="nav-num">4</span>Trust Model &amp; Integration</a>
+    <a href="#sec5"   class="nav-item">       <span class="nav-num">5</span>Operational Considerations</a>
+
     <div class="sidebar-footer">
       <a href="mailto:support@unibeam.com">support@unibeam.com</a>
     </div>
@@ -282,100 +315,211 @@
 
     <div class="topbar">
       <span class="topbar-title">Unibeam Auth — Microsoft EAM</span>
+      <span class="topbar-tag">Deployment Guide</span>
     </div>
 
     <div class="hero">
       <div class="hero-eyebrow">Microsoft Entra External Authentication Method</div>
       <h1>Unibeam Auth<br>Microsoft EAM</h1>
       <p class="hero-sub">
-        Deploy SIM-based MFA for Microsoft Entra External Authentication Method — no hardware tokens or one-time codes, with carrier-backed signals to strengthen identity verification.
+        Deploy SIM-based MFA for Microsoft Entra — no hardware tokens, no one-time codes. Carrier-backed, hardware-bound identity verification that replaces phishable second factors.
       </p>
     </div>
 
     <div class="content">
 
-      <!-- ── 0. MFA FACTOR FRAMEWORK ───────────────────────────────────── -->
-      <div class="section" id="sec0">
-        <div class="section-header"><div class="sec-num">0</div>MFA Factor Framework</div>
+      <!-- ══════════════════════════════════════════════════════════════════
+           1. UNIBEAM EXTERNAL MFA
+           ══════════════════════════════════════════════════════════════════ -->
+      <div class="section" id="sec1">
+        <div class="section-header"><div class="sec-num">1</div>Unibeam External MFA</div>
         <div class="section-body">
-          <p>Microsoft's authentication security model classifies second factors into three categories. Understanding where each MFA method genuinely sits in this model — not just where vendors claim it sits — is the prerequisite for evaluating risk.</p>
+          <p>Unibeam Auth integrates with Microsoft Entra ID as a certified <strong>External Authentication Method (EAM)</strong> over OIDC. It replaces the second factor in your existing Conditional Access policies with SIM-based authentication — leveraging the cryptographic security of the subscriber's SIM hardware rather than a code, push notification, or application secret.</p>
 
-          <div class="factor-grid">
-            <div class="factor-card">
-              <div class="factor-card-header know">Something you know</div>
-              <div class="factor-card-body">
-                <p>A secret held in memory or storage. Can be extracted, guessed, or phished.</p>
-                <div class="factor-item"><span class="dot dot-red"></span><div>Password / PIN</div></div>
-                <div class="factor-item"><span class="dot dot-red"></span><div>Security question</div></div>
-              </div>
-            </div>
-            <div class="factor-card">
-              <div class="factor-card-header have">Something you have</div>
-              <div class="factor-card-body">
-                <p>A physical object where the subscriber's credentials are bound. Security depends on whether those credentials can leave the object.</p>
-                <div class="factor-item"><span class="dot dot-blue"></span><div>Hardware token (FIDO2, YubiKey)</div></div>
-                <div class="factor-item"><span class="dot dot-blue"></span><div>Smart card (PIV)</div></div>
-                <div class="factor-item"><span class="dot dot-blue"></span><div>SIM card</div></div>
-                <div class="factor-item"><span class="dot dot-red"></span><div>Phone (for TOTP app) <span class="sub">— secret is exportable</span></div></div>
-                <div class="factor-item"><span class="dot dot-red"></span><div>Phone (for SMS OTP) <span class="sub">— number is portable</span></div></div>
-              </div>
-            </div>
-            <div class="factor-card">
-              <div class="factor-card-header are">Something you are</div>
-              <div class="factor-card-body">
-                <p>A biometric characteristic. Cannot be transferred but can be spoofed at the sensor.</p>
-                <div class="factor-item"><span class="dot dot-green"></span><div>Fingerprint</div></div>
-                <div class="factor-item"><span class="dot dot-green"></span><div>Face recognition</div></div>
-                <div class="factor-item"><span class="dot dot-green"></span><div>Voice / iris</div></div>
-              </div>
-            </div>
+          <div class="callout">
+            <div class="callout-title">What "External Authentication Method" means</div>
+            <p>Microsoft Entra EAM is a standards-based extension point that allows a certified third-party identity provider to serve as the MFA step in an Entra sign-in flow. Unibeam plugs into this slot — Entra handles the primary credential, Unibeam handles the second factor, and the result is a signed OIDC token returned to Entra.</p>
           </div>
 
-          <h2>Why category label is not enough</h2>
-          <div class="why">Reason</div>
-          <p>TOTP and SMS OTP are commonly classified as "something you have" because they require a phone. This is misleading. The security property of "something you have" is that the secret <em>cannot leave the hardware</em>. For TOTP, the seed is a string that can be exported, backed up, and phished. For SMS, the phone number (MSISDN) is a logical identifier that can be ported to another SIM by a carrier support call. Neither meets the actual security criterion of the category.</p>
+          <p>The sections below explain what the current MFA landscape looks like, why existing methods leave security gaps, and why Unibeam's architecture closes those gaps at the hardware level.</p>
+        </div>
+      </div>
 
-          <p>The table below shows where each method genuinely sits:</p>
+      <!-- ── 1.a MFA TODAY ─────────────────────────────────────────────── -->
+      <div class="subsection" id="sec1a">
+        <div class="subsection-header"><span class="sec-label">1.a</span>&nbsp; MFA Today — TOTP, OTP &amp; Microsoft Authenticator</div>
+        <div class="section-body">
+          <p>The three dominant MFA methods in enterprise Microsoft environments each address account takeover in theory — but each has a structural weakness that keeps them effectively within the "something you know" threat category, despite being labelled as a second factor.</p>
+
+          <div class="compare-grid">
+
+            <div class="compare-card">
+              <div class="compare-card-header totp">TOTP</div>
+              <div class="compare-card-body">
+                <p>Time-based one-time passwords. A shared seed generates a 6-digit code every 30 seconds.</p>
+                <div class="ci"><span class="dot dot-red"></span><div>Seed is a string — exportable, backable, phishable</div></div>
+                <div class="ci"><span class="dot dot-red"></span><div>Codes captured in real time by AiTM proxy</div></div>
+                <div class="ci"><span class="dot dot-red"></span><div>30-second replay window; commodity tooling available</div></div>
+                <div class="ci"><span class="dot dot-yellow"></span><div>Does not require physical device — only the seed</div></div>
+              </div>
+            </div>
+
+            <div class="compare-card">
+              <div class="compare-card-header otp">SMS / WhatsApp OTP</div>
+              <div class="compare-card-body">
+                <p>One-time codes delivered over the carrier network to a phone number.</p>
+                <div class="ci"><span class="dot dot-red"></span><div>SS7 vulnerabilities allow interception without device access</div></div>
+                <div class="ci"><span class="dot dot-red"></span><div>SIM swap ports the number to an attacker SIM via carrier support</div></div>
+                <div class="ci"><span class="dot dot-red"></span><div>WhatsApp OTP shares the same MSISDN — SIM swap compromises both channels</div></div>
+                <div class="ci"><span class="dot dot-yellow"></span><div>Relies on number as identity, not hardware</div></div>
+              </div>
+            </div>
+
+            <div class="compare-card">
+              <div class="compare-card-header msauth">Microsoft Authenticator</div>
+              <div class="compare-card-body">
+                <p>Push notifications or number-matching via Microsoft's authenticator app.</p>
+                <div class="ci"><span class="dot dot-blue"></span><div>Number matching reduces accidental approvals (MFA fatigue)</div></div>
+                <div class="ci"><span class="dot dot-red"></span><div>App secret extractable from device backup or rooted device</div></div>
+                <div class="ci"><span class="dot dot-red"></span><div>Push fatigue / social engineering remains viable at scale</div></div>
+                <div class="ci"><span class="dot dot-yellow"></span><div>Security depends on OS-level device integrity — no dedicated hardware</div></div>
+              </div>
+            </div>
+
+          </div>
+
+          <h2>Where each method actually sits in the security model</h2>
+          <p>The operative security property of "something you have" is that the credential <em>cannot leave the hardware</em>. TOTP, SMS OTP, and push-based apps all fail this test:</p>
 
           <div class="verdict-row"><span class="vr-label">Password</span><span class="vr-factor vr-know">Know</span><span>Phishable, leakable, guessable</span></div>
           <div class="verdict-row"><span class="vr-label">TOTP (authenticator app)</span><span class="vr-factor vr-know">Acts like Know</span><span>Seed is exportable; code is phishable via AiTM</span></div>
           <div class="verdict-row"><span class="vr-label">SMS / WhatsApp OTP</span><span class="vr-factor vr-know">Acts like Know</span><span>Number is portable; code is interceptable via SS7</span></div>
-          <div class="verdict-row"><span class="vr-label">FIDO2 hardware token</span><span class="vr-factor vr-have-true">True Have</span><span>Subscriber credentials are non-exportable; cannot be intercepted remotely</span></div>
-          <div class="verdict-row"><span class="vr-label">Unibeam SIM Auth</span><span class="vr-factor vr-have-true">True Have</span><span>Subscriber credentials are secured on-SIM; number portability does not transfer them</span></div>
+          <div class="verdict-row"><span class="vr-label">Microsoft Authenticator (push)</span><span class="vr-factor vr-partial">Partially Have</span><span>App secret is software-bound; device backup can expose it</span></div>
+          <div class="verdict-row"><span class="vr-label">FIDO2 hardware token</span><span class="vr-factor vr-have-true">True Have</span><span>Credentials are non-exportable; cannot be intercepted remotely</span></div>
+          <div class="verdict-row"><span class="vr-label">Unibeam SIM Auth</span><span class="vr-factor vr-have-true">True Have</span><span>Credentials secured on-SIM; number portability does not transfer them</span></div>
 
           <div class="callout">
             <div class="callout-title">The design criterion</div>
-            <p>A genuine second factor must not be reducible to a string the attacker can obtain remotely. If the secret can be intercepted or ported, the factor provides one layer of security, not two. TOTP and SMS OTP both reduce to strings. FIDO2 and SIM authentication do not.</p>
+            <p>A genuine second factor must not be reducible to a string the attacker can obtain remotely. If the secret can be intercepted, ported, or extracted from a backup, the factor provides one layer of security — not two. TOTP, SMS OTP, and app-based authenticators all reduce to strings. FIDO2 and SIM authentication do not.</p>
           </div>
         </div>
       </div>
 
-      <!-- ── 1. THREAT MODEL ────────────────────────────────────────────── -->
-      <div class="section" id="sec1">
-        <div class="section-header"><div class="sec-num">1</div>The Threat Model</div>
+      <!-- ── 1.b WHY UNIBEAM IS DIFFERENT ─────────────────────────────── -->
+      <div class="subsection" id="sec1b">
+        <div class="subsection-header"><span class="sec-label">1.b</span>&nbsp; Why Unibeam is Different from "Old-Generation Authenticators"</div>
         <div class="section-body">
-          <p>The problem Unibeam addresses is not weak passwords — it is that the second factor in most enterprise MFA deployments is also phishable.</p>
+          <p>Legacy authenticators — TOTP apps, SMS OTP, and push-based solutions — share a common architecture: they authenticate a <em>phone number</em> or an <em>application secret stored in software</em>. Unibeam takes a fundamentally different approach: authentication is bound to a cryptographic identity secured inside the SIM hardware itself, verified by the mobile carrier's network in real time.</p>
 
-          <h2>Why TOTP fails</h2>
-          <div class="why">Reason</div>
-          <p>TOTP codes are a shared secret between the user's device and the IdP. An adversary-in-the-middle (AiTM) proxy captures the code in real time as the user submits it, and replays it within the 30-second validity window. The code has no binding to the device, the network, or the session — it is a string. AiTM kits targeting TOTP are commodity tooling.</p>
+          <h2>The core architectural difference</h2>
+          <div class="why">Why it matters</div>
+          <p>Old-generation authenticators generate or receive a code and ask the user to type or approve it. That code is the authentication proof — and because it is a string, it can be captured. Unibeam generates no code. The proof of identity is a cryptographic challenge-response between the Unibeam Applet on the SIM and the carrier's Authentication Centre (AuC), taking place entirely within the carrier network. The user sees nothing; there is nothing for an attacker to intercept.</p>
 
-          <h2>Why SMS / WhatsApp OTP fails</h2>
-          <div class="why">Reason</div>
-          <p>OTP delivery over SMS has two structural weaknesses. First, SS7 — the 1970s-era global signalling protocol — allows a party with network access to redirect messages to any MSISDN. Second, SIM swap: a social-engineering attack against carrier support staff that ports the victim's number to an attacker-controlled SIM. Both attacks require no access to the user's device. WhatsApp OTP uses the same underlying MSISDN as SMS — a successful SIM swap compromises both channels simultaneously.</p>
-
-          <h2>Why hardware tokens are not a universal answer</h2>
-          <div class="why">Reason</div>
-          <p>FIDO2 tokens are phishing-resistant. The operational constraint is that they require procurement, distribution, replacement on loss, and physical presence to enrol. At organisations with thousands of distributed, remote, or shift-based employees, this creates provisioning gaps — periods where users are either locked out or are being authenticated by a weaker fallback. Gaps in coverage are exploitable.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Property</th><th>TOTP / OTP / Push App</th><th>Unibeam SIM Auth</th></tr></thead>
+              <tbody>
+                <tr><td><strong>What is authenticated</strong></td><td>A code or software app secret</td><td>The physical SIM hardware</td></tr>
+                <tr><td><strong>User interaction</strong></td><td>Type code or approve push</td><td>None — silent background challenge</td></tr>
+                <tr><td><strong>Phishing surface</strong></td><td>Code interceptable by AiTM proxy</td><td>No code exists to intercept</td></tr>
+                <tr><td><strong>SIM swap resilience</strong></td><td>Number portability transfers OTP delivery</td><td>Credentials stay on original SIM; attacker SIM fails challenge</td></tr>
+                <tr><td><strong>Credential storage</strong></td><td>Software (app, device backup, cloud sync)</td><td>Dedicated hardware secure element (SIM / eSIM)</td></tr>
+                <tr><td><strong>Remote extraction</strong></td><td>Possible via backup, export, or rooted device</td><td>Not possible — SIM hardware boundary</td></tr>
+                <tr><td><strong>Provisioning</strong></td><td>App install + QR scan per user</td><td>Applet deployed OTA by carrier; single user registration</td></tr>
+              </tbody>
+            </table>
+          </div>
 
           <div class="callout">
-            <div class="callout-title">The Attack Surface Unibeam Reduces</div>
-            <p>AiTM phishing, SS7 interception, and SIM swap all require the attacker to operate against a signal (code, message) that is separate from the identity hardware. Unibeam moves authentication entirely to the SIM — a piece of hardware the attacker cannot access remotely.</p>
+            <div class="callout-title">Why "hardware-backed app" is still a software solution</div>
+            <p>Some solutions market themselves as "hardware-backed" because they use a phone's secure enclave to store an app secret. A phone's secure enclave protects against local extraction — it does not protect against the application being enrolled on a backup device, or the phone number being ported. Unibeam's security boundary is the SIM hardware and the carrier network, neither of which is reachable from the public internet.</p>
           </div>
         </div>
       </div>
 
-      <!-- ── 2. HOW AUTHENTICATION WORKS ─────────────────────────────── -->
+      <!-- ── 1.b.1 APP + HARDWARE SECURITY ────────────────────────────── -->
+      <div class="subsection" id="sec1b1">
+        <div class="subsubsection-header"><span class="sec-label">1.b.1</span>&nbsp; Unibeam as an Application + Hardware Solution — SIM &amp; eSIM Security vs. Apps and External Hardware Tokens (Yubico)</div>
+        <div class="section-body">
+          <p>Unibeam combines two layers that no pure-software or pure-hardware solution provides together: a carrier-integrated application layer (the Unibeam Applet) running inside certified, tamper-resistant hardware (the SIM or eSIM). Understanding how this compares to software authenticators and to dedicated external hardware tokens like Yubico YubiKeys clarifies where each approach's security boundary actually sits.</p>
+
+          <h2>The three security tiers</h2>
+          <div class="hw-grid">
+
+            <div class="hw-card">
+              <div class="hw-card-header app">Software Authenticator<br><small style="font-weight:400">TOTP apps · push · SMS OTP</small></div>
+              <div class="hw-card-body">
+                <div class="hw-row"><span class="dot dot-red"></span><div>Credentials stored in application memory or OS keychain — software boundary only</div></div>
+                <div class="hw-row"><span class="dot dot-red"></span><div>Exportable via device backup, iCloud/Google sync, or rooted device extraction</div></div>
+                <div class="hw-row"><span class="dot dot-red"></span><div>Phone number (SMS) is a logical identifier — SIM swap transfers OTP delivery to attacker</div></div>
+                <div class="hw-row"><span class="dot dot-yellow"></span><div>No dedicated secure element — relies on OS-level security, which varies by device</div></div>
+                <div class="hw-row"><span class="dot dot-green"></span><div>Zero distribution cost — app install only; instant provisioning</div></div>
+              </div>
+            </div>
+
+            <div class="hw-card">
+              <div class="hw-card-header yubikey">External Hardware Token<br><small style="font-weight:400">FIDO2 · YubiKey</small></div>
+              <div class="hw-card-body">
+                <div class="hw-row"><span class="dot dot-green"></span><div>Private key generated and stored in dedicated secure element — non-exportable by design</div></div>
+                <div class="hw-row"><span class="dot dot-green"></span><div>Phishing-resistant: credential is origin-bound; cannot be replayed cross-site</div></div>
+                <div class="hw-row"><span class="dot dot-green"></span><div>No shared secret between server and client — challenge-response only</div></div>
+                <div class="hw-row"><span class="dot dot-red"></span><div>Requires physical procurement, shipping, and distribution to every user</div></div>
+                <div class="hw-row"><span class="dot dot-red"></span><div>Loss or damage requires re-provisioning; gap period forces a weaker fallback</div></div>
+                <div class="hw-row"><span class="dot dot-red"></span><div>No carrier-network signal — cannot detect SIM swap, device change, or MSISDN anomalies</div></div>
+              </div>
+            </div>
+
+            <div class="hw-card">
+              <div class="hw-card-header sim">Unibeam SIM / eSIM Auth<br><small style="font-weight:400">Application + Hardware</small></div>
+              <div class="hw-card-body">
+                <div class="hw-row"><span class="dot dot-green"></span><div>Unibeam Applet runs inside the SIM's Java Card secure execution environment — hardware-isolated</div></div>
+                <div class="hw-row"><span class="dot dot-green"></span><div>Subscriber credentials secured within SIM hardware; SIM swap does not transfer them</div></div>
+                <div class="hw-row"><span class="dot dot-green"></span><div>Challenge-response occurs on the carrier's internal AuC channel — unreachable from the public internet</div></div>
+                <div class="hw-row"><span class="dot dot-green"></span><div>eSIM: applet deployed OTA — no physical distribution, no gap period</div></div>
+                <div class="hw-row"><span class="dot dot-green"></span><div>Silent authentication — no user interaction, no code, no phishing surface</div></div>
+                <div class="hw-row"><span class="dot dot-green"></span><div>Carrier-layer signals (SIMId, DeviceId, ChangeTimestamp) surface identity anomalies to Entra</div></div>
+              </div>
+            </div>
+
+          </div>
+
+          <h2>SIM and eSIM as a secure element</h2>
+          <div class="why">Why it matters</div>
+          <p>A SIM card is a Java Card-compliant smart card running inside a certified tamper-resistant hardware module. It meets the same hardware security standards (ISO/IEC 7816, GlobalPlatform) as dedicated external tokens. The Unibeam Applet is installed inside this environment — it has access to the SIM's cryptographic primitives and its own isolated storage, but cannot be read by the host OS, the application layer, or any external tool. An attacker with full control of the Android or iOS device cannot extract credentials from the SIM.</p>
+
+          <p>eSIM (eUICC) brings the same hardware security model with the addition of remote provisioning. The applet is deployed and updated over-the-air through the carrier's SM-DP+ server — eliminating the physical distribution requirement that makes hardware tokens operationally difficult at scale. For enterprises with large, distributed, or remote workforces, eSIM means coverage can be provisioned the same day it is needed, with no gap period where a weaker fallback method is in use.</p>
+
+          <h2>Unibeam SIM Auth vs. Yubico YubiKey</h2>
+          <div class="why">Comparison</div>
+          <p>Both a YubiKey and Unibeam SIM Auth are hardware-backed and phishing-resistant. The differences are operational and architectural:</p>
+
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Dimension</th><th>Yubico YubiKey (FIDO2)</th><th>Unibeam SIM / eSIM</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Hardware</strong></td><td>Dedicated USB/NFC token (external, separate device)</td><td>SIM / eSIM already inside the user's phone</td></tr>
+                <tr><td><strong>Distribution</strong></td><td>Physical procurement + shipping per user</td><td>OTA provisioning via carrier — no physical shipping</td></tr>
+                <tr><td><strong>Loss / replacement</strong></td><td>New token must be procured and enrolled</td><td>eSIM re-provisioned remotely in minutes</td></tr>
+                <tr><td><strong>Coverage gap risk</strong></td><td>High — lost token forces a weaker fallback</td><td>Low — eSIM replaced remotely; no gap period</td></tr>
+                <tr><td><strong>User interaction</strong></td><td>Physical tap or USB plug-in required per login</td><td>Silent — no user action at authentication time</td></tr>
+                <tr><td><strong>Phishing resistance</strong></td><td><span class="badge badge-green">Yes</span> — origin-bound credential</td><td><span class="badge badge-green">Yes</span> — no code exists to phish</td></tr>
+                <tr><td><strong>Remote credential extraction</strong></td><td><span class="badge badge-green">Not possible</span></td><td><span class="badge badge-green">Not possible</span></td></tr>
+                <tr><td><strong>SIM swap detection</strong></td><td><span class="badge badge-red">Not possible</span> — no carrier integration</td><td><span class="badge badge-green">Yes</span> — new SIMId triggers alert; carrier challenge fails on attacker SIM</td></tr>
+                <tr><td><strong>Carrier-layer identity signals</strong></td><td>None</td><td>SIMId, DeviceId, ChangeTimestamp written to Entra on every auth event</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout">
+            <div class="callout-title">The combined advantage</div>
+            <p>Unibeam delivers the hardware-security guarantees of a FIDO2 token — non-exportable credentials, no phishable code — while removing the operational constraints that prevent universal deployment. The application layer (the Unibeam Applet) also adds carrier-network signals that no external hardware token can provide, giving your detection stack visibility into SIM and device changes that would otherwise be invisible to Entra.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════════════════
+           2. HOW AUTHENTICATION WORKS
+           ══════════════════════════════════════════════════════════════════ -->
       <div class="section" id="sec2">
         <div class="section-header"><div class="sec-num">2</div>How Authentication Works</div>
         <div class="section-body">
@@ -389,7 +533,7 @@
                 <tr><td>1</td><td>User</td><td>Submits primary credential (password) to Entra.</td></tr>
                 <tr><td>2</td><td>Entra</td><td>Validates password, delegates MFA to the registered External Authentication Method (Unibeam) via OIDC redirect.</td></tr>
                 <tr><td>3</td><td>Unibeam</td><td>Reads the user's <code>mobilePhone</code> attribute from Entra. Initiates a silent SIM authentication challenge directly with the mobile operator's network via the SIM Application Toolkit (SIM AT) channel.</td></tr>
-                <tr><td>4</td><td>SIM / Carrier</td><td>The SIM applet on the device performs a challenge-response with the carrier network, secured by the subscriber's known credentials. No user interaction. No code. No push notification.</td></tr>
+                <tr><td>4</td><td>SIM / Carrier</td><td>The Unibeam Applet on the SIM performs a challenge-response with the carrier's Authentication Centre (AuC), secured by the subscriber's hardware-bound credentials. No user interaction. No code. No push notification.</td></tr>
                 <tr><td>5</td><td>Unibeam</td><td>Receives confirmation from the carrier. Issues a signed OIDC <code>id_token</code> to Entra with claims including <code>SIMId</code>, <code>DeviceId</code>, and <code>ChangeTimestamp</code>.</td></tr>
                 <tr><td>6</td><td>Entra</td><td>Validates the token signature against Unibeam's JWKS endpoint, grants the session.</td></tr>
               </tbody>
@@ -398,15 +542,17 @@
 
           <h2>Why there is nothing to intercept</h2>
           <div class="why">Reason</div>
-          <p>The challenge-response in step 4 occurs on the carrier's internal network between the network authentication centre (AuC) and the SIM applet. This channel is not accessible from the public internet. There is no code generated that the user sees, types, or transmits — so there is nothing for a proxy or SS7 attacker to capture. The subscriber's known credentials never leave the SIM.</p>
+          <p>The challenge-response in step 4 occurs on the carrier's internal network between the AuC and the Unibeam Applet on the SIM. This channel is not accessible from the public internet. There is no code generated that the user sees, types, or transmits — so there is nothing for a proxy or SS7 attacker to capture. The subscriber's credentials never leave the SIM.</p>
 
           <h2>SIM hardware vs. phone number</h2>
           <div class="why">Reason</div>
-          <p>Authentication is bound to the subscriber's credentials secured within the physical SIM hardware — not to the phone number (MSISDN). A SIM swap assigns a number to a different SIM; because the subscriber's credentials live on the original SIM hardware, a swapped number does not inherit the authentication capability. The attacker's SIM will fail the carrier challenge.</p>
+          <p>Authentication is bound to the credentials secured within the physical SIM hardware — not to the phone number (MSISDN). A SIM swap assigns a number to a different SIM; because the credentials live on the original SIM hardware, a swapped number does not inherit the authentication capability. The attacker's SIM will fail the carrier challenge.</p>
         </div>
       </div>
 
-      <!-- ── 3. IDENTITY SIGNALS ─────────────────────────────────────── -->
+      <!-- ══════════════════════════════════════════════════════════════════
+           3. IDENTITY SIGNALS
+           ══════════════════════════════════════════════════════════════════ -->
       <div class="section" id="sec3">
         <div class="section-header"><div class="sec-num">3</div>Identity Signals</div>
         <div class="section-body">
@@ -414,23 +560,20 @@
 
           <h2><code>SIMId</code> — SIM hardware identity</h2>
           <div class="why">Why it matters</div>
-          <p>Unibeam generates a unique identifier that represents the SIM hardware that completed the carrier challenge. This identifier is not derived from the ICCID or any externally readable SIM property — it is Unibeam's own stable reference to that specific SIM. It remains constant as long as the same SIM is in use. When <code>SIMId</code> changes between two authentications for the same user, the SIM hardware itself changed — either an expected swap (new plan, new phone) or an unexpected one that warrants investigation.</p>
+          <p>Unibeam generates a unique identifier representing the SIM hardware that completed the carrier challenge. It is not derived from the ICCID or any externally readable SIM property. It remains constant as long as the same SIM is in use. When <code>SIMId</code> changes between two authentications for the same user, the SIM hardware itself changed — either an expected swap or an unexpected one that warrants investigation.</p>
 
           <h2><code>DeviceId</code> — Device hardware identity</h2>
           <div class="why">Why it matters</div>
-          <p>Unibeam generates a unique identifier that represents the physical device hardware seen at authentication time. This identifier is independent of any MDM or Intune enrolment — no device management agent is required. It remains stable for a given device and changes only when the user authenticates from a different physical device. Use it to enforce one-user-one-device policies and detect account sharing (same user principal, multiple concurrent <code>DeviceId</code> values).</p>
+          <p>A unique identifier representing the physical device hardware seen at authentication time. Independent of MDM or Intune enrolment — no device management agent is required. It remains stable for a given device and changes only when the user authenticates from a different physical device. Use it to enforce one-user-one-device policies and detect account sharing.</p>
 
           <h2><code>ChangeTimestamp</code> — Identity change signal</h2>
           <div class="why">Why it matters</div>
-          <p>A timestamp that is set whenever a new <code>SIMId</code> or <code>DeviceId</code> is observed for a user — meaning the SIM hardware, the device hardware, or both, changed since the last authentication. It does not depend exclusively on any single carrier-side identifier. This is the basis for a configurable safety delay.</p>
-
-          <h3>The safety delay</h3>
-          <p>A common post-breach pattern: an attacker obtains valid credentials, acquires a new device, and attempts immediate sign-in. The <code>ChangeTimestamp</code> exposes this — a new identity signal will have just been recorded:</p>
+          <p>A timestamp set whenever a new <code>SIMId</code> or <code>DeviceId</code> is observed for a user. This is the basis for a configurable safety delay:</p>
           <div class="policy-rule">
 <span class="kw">IF</span>  now() &minus; <span class="val">ChangeTimestamp</span>  &lt;  <span class="val">threshold</span>
 <span class="kw">THEN</span>  block login  <span class="kw">OR</span>  restrict access to sensitive areas
           </div>
-          <p>The threshold is configurable per group. A legitimate employee who just got a new phone will also trigger this — the difference is they can be granted an exemption by IT or complete a step-up challenge. An attacker with stolen credentials and a new device cannot.</p>
+          <p>A legitimate employee who just got a new phone will also trigger this — the difference is they can be granted an exemption by IT. An attacker with stolen credentials and a new device cannot.</p>
 
           <div class="table-wrap">
             <table>
@@ -462,14 +605,16 @@
         </div>
       </div>
 
-      <!-- ── 4. TRUST MODEL & INTEGRATION ───────────────────────────── -->
+      <!-- ══════════════════════════════════════════════════════════════════
+           4. TRUST MODEL & INTEGRATION
+           ══════════════════════════════════════════════════════════════════ -->
       <div class="section" id="sec4">
         <div class="section-header"><div class="sec-num">4</div>Trust Model &amp; Integration</div>
         <div class="section-body">
 
           <h2>What you are trusting</h2>
           <div class="why">Reason</div>
-          <p>When Entra validates Unibeam's <code>id_token</code>, it is trusting Unibeam's OIDC endpoint and its signing keys (fetched from the discovery endpoint). Unibeam, in turn, relies on the carrier's network connectivity to reach the SIM — but the challenge itself is handled entirely by the Unibeam Applet running on the SIM. The carrier is an enabler, not the root of trust: it provides the transport and the SIM as a secure execution environment, while the Unibeam Applet owns the cryptographic challenge-response. You are not adding a new root of trust; you are leveraging existing network infrastructure to surface a security layer that Unibeam controls end-to-end.</p>
+          <p>When Entra validates Unibeam's <code>id_token</code>, it trusts Unibeam's OIDC endpoint and signing keys. Unibeam relies on carrier network connectivity to reach the SIM, but the challenge itself is handled entirely by the Unibeam Applet on the SIM. The carrier is an enabler, not the root of trust — it provides the transport and the SIM as a secure execution environment, while the Unibeam Applet owns the cryptographic challenge-response end-to-end.</p>
 
           <h2>What Unibeam can read from your tenant</h2>
           <div class="table-wrap">
@@ -485,7 +630,7 @@
 
           <h2>Token validation</h2>
           <div class="why">Reason</div>
-          <p>Entra validates the <code>id_token</code> signature against Unibeam's published signing keys via the OIDC discovery endpoint. Tokens issued for a different audience are rejected by Entra. A forged token without a valid signature from Unibeam's private key will not pass validation.</p>
+          <p>Entra validates the <code>id_token</code> signature against Unibeam's published signing keys via the OIDC discovery endpoint. Tokens issued for a different audience are rejected. A forged token without a valid signature from Unibeam's private key will not pass validation.</p>
 
           <div class="callout warn">
             <div class="callout-title">Dependency to understand</div>
@@ -494,7 +639,9 @@
         </div>
       </div>
 
-      <!-- ── 5. OPERATIONAL CONSIDERATIONS ──────────────────────────── -->
+      <!-- ══════════════════════════════════════════════════════════════════
+           5. OPERATIONAL CONSIDERATIONS
+           ══════════════════════════════════════════════════════════════════ -->
       <div class="section" id="sec5">
         <div class="section-header"><div class="sec-num">5</div>Operational Considerations</div>
         <div class="section-body">
@@ -506,10 +653,10 @@
           <p>Each user registers once via <a href="https://mysignins.microsoft.com/security-info" target="_blank">mysignins.microsoft.com/security-info</a>. Registration links the user's Entra identity to their SIM. After that, authentication is silent — no ongoing user action required.</p>
 
           <h2>Enrolment scope</h2>
-          <p>Unibeam Auth is targeted per group in Entra. Users outside targeted groups are unaffected. This allows staged rollout: start with a pilot group, validate the full flow end-to-end, then expand. The safety delay and SIMId change signals are only populated after first enrolment.</p>
+          <p>Unibeam Auth is targeted per group in Entra. Users outside targeted groups are unaffected. This allows staged rollout: start with a pilot group, validate the full flow end-to-end, then expand. The safety delay and <code>SIMId</code> change signals are only populated after first enrolment.</p>
 
           <h2>SIEM integration</h2>
-          <p>The three custom attributes (<code>SIMId</code>, <code>DeviceId</code>, <code>ChangeTimestamp</code>) are written to the Entra user object on each auth event and are queryable via Microsoft Graph. Any SIEM with Entra sign-in log ingestion will receive these values in the token claims. Build detection rules around <code>SIMId</code> rotation and <code>ChangeTimestamp</code> recency using your existing tooling — no separate Unibeam SIEM connector is required.</p>
+          <p>The three custom attributes (<code>SIMId</code>, <code>DeviceId</code>, <code>ChangeTimestamp</code>) are written to the Entra user object on each auth event and are queryable via Microsoft Graph. Any SIEM with Entra sign-in log ingestion receives these values in the token claims. Build detection rules around <code>SIMId</code> rotation and <code>ChangeTimestamp</code> recency using your existing tooling — no separate Unibeam SIEM connector is required.</p>
 
           <div class="callout">
             <div class="callout-title">Contact</div>
@@ -522,7 +669,7 @@
   </div>
 
   <script>
-    const sections = document.querySelectorAll('.section[id]');
+    const sections = document.querySelectorAll('[id^="sec"]');
     const navItems = document.querySelectorAll('#sidebar .nav-item');
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => {
@@ -532,7 +679,7 @@
           if (a) a.classList.add('active');
         }
       });
-    }, { threshold: 0.3 });
+    }, { threshold: 0.2 });
     sections.forEach(s => io.observe(s));
   </script>
 </body>
