@@ -334,7 +334,7 @@
       <div class="section" id="sec1">
         <div class="section-header"><div class="sec-num">1</div>Unibeam External MFA</div>
         <div class="section-body">
-          <p>Unibeam Auth integrates with Microsoft Entra ID as a certified <strong>External Authentication Method (EAM)</strong> over OIDC. It replaces the second factor in your existing Conditional Access policies with SIM-based authentication — leveraging the cryptographic security of the subscriber's SIM hardware rather than a code, push notification, or application secret.</p>
+          <p>Unibeam Auth integrates with Microsoft Entra ID as a certified <strong>External Authentication Method (EAM)</strong> over OIDC. It replaces the second factor in your existing Conditional Access policies with SIM-based authentication — leveraging unique identifiers bound to the subscriber's SIM hardware rather than a code, push notification, or application secret.</p>
 
           <div class="callout">
             <div class="callout-title">What "External Authentication Method" means</div>
@@ -409,11 +409,11 @@
       <div class="subsection" id="sec1b">
         <div class="subsection-header"><span class="sec-label">1.b</span>&nbsp; Why Unibeam is Different from "Old-Generation Authenticators"</div>
         <div class="section-body">
-          <p>Legacy authenticators — TOTP apps, SMS OTP, and push-based solutions — share a common architecture: they authenticate a <em>phone number</em> or an <em>application secret stored in software</em>. Unibeam takes a fundamentally different approach: authentication is bound to a cryptographic identity secured inside the SIM hardware itself, verified by the mobile carrier's network in real time.</p>
+          <p>Legacy authenticators — TOTP apps, SMS OTP, and push-based solutions — share a common architecture: they authenticate a <em>phone number</em> or an <em>application secret stored in software</em>. Unibeam takes a fundamentally different approach: authentication is bound to unique identifiers generated from the SIM hardware itself, verified by the mobile carrier's network in real time.</p>
 
           <h2>The core architectural difference</h2>
           <div class="why">Why it matters</div>
-          <p>Old-generation authenticators generate or receive a code and ask the user to type or approve it. That code is the authentication proof — and because it is a string, it can be captured. Unibeam generates no code. The proof of identity is a cryptographic challenge-response between the Unibeam Applet on the SIM and the carrier's Authentication Centre (AuC), taking place entirely within the carrier network. The user sees nothing; there is nothing for an attacker to intercept.</p>
+          <p>Old-generation authenticators generate or receive a code and ask the user to type or approve it. That code is the authentication proof — and because it is a string, it can be captured. Unibeam generates no code. The proof of identity is a unique identifier challenge between the Unibeam Applet on the SIM and the carrier's Authentication Centre (AuC), taking place entirely within the carrier network. The user sees nothing; there is nothing for an attacker to intercept.</p>
 
           <div class="table-wrap">
             <table>
@@ -485,7 +485,7 @@
 
           <h2>SIM and eSIM as a secure element</h2>
           <div class="why">Why it matters</div>
-          <p>A SIM card is a Java Card-compliant smart card running inside a certified tamper-resistant hardware module. It meets the same hardware security standards (ISO/IEC 7816, GlobalPlatform) as dedicated external tokens. The Unibeam Applet is installed inside this environment — it has access to the SIM's cryptographic primitives and its own isolated storage, but cannot be read by the host OS, the application layer, or any external tool. An attacker with full control of the Android or iOS device cannot extract credentials from the SIM.</p>
+          <p>A SIM card is a Java Card-compliant smart card running inside a certified tamper-resistant hardware module. It meets the same hardware security standards (ISO/IEC 7816, GlobalPlatform) as dedicated external tokens. The Unibeam Applet is installed inside this environment — it generates and stores unique identifiers in its own isolated storage, and cannot be read by the host OS, the application layer, or any external tool. An attacker with full control of the Android or iOS device cannot extract credentials from the SIM.</p>
 
           <p>eSIM (eUICC) brings the same hardware security model with the addition of remote provisioning. The applet is deployed and updated over-the-air through the carrier's SM-DP+ server — eliminating the physical distribution requirement that makes hardware tokens operationally difficult at scale. For enterprises with large, distributed, or remote workforces, eSIM means coverage can be provisioned the same day it is needed, with no gap period where a weaker fallback method is in use.</p>
 
@@ -614,7 +614,7 @@
 
           <h2>What you are trusting</h2>
           <div class="why">Reason</div>
-          <p>When Entra validates Unibeam's <code>id_token</code>, it trusts Unibeam's OIDC endpoint and signing keys. Unibeam relies on carrier network connectivity to reach the SIM, but the challenge itself is handled entirely by the Unibeam Applet on the SIM. The carrier is an enabler, not the root of trust — it provides the transport and the SIM as a secure execution environment, while the Unibeam Applet owns the cryptographic challenge-response end-to-end.</p>
+          <p>When Entra validates Unibeam's <code>id_token</code>, it trusts Unibeam's OIDC endpoint and signing keys. Unibeam relies on carrier network connectivity to reach the SIM, but the challenge itself is handled entirely by the Unibeam Applet on the SIM. The carrier is an enabler, not the root of trust — it provides the transport and the SIM as a secure execution environment, while the Unibeam Applet owns the identifier-based challenge end-to-end.</p>
 
           <h2>What Unibeam can read from your tenant</h2>
           <div class="table-wrap">
