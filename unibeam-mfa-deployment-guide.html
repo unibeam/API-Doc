@@ -304,6 +304,16 @@
     <a href="#sec3"   class="nav-item">       <span class="nav-num">3</span>Identity Signals</a>
     <a href="#sec4"   class="nav-item">       <span class="nav-num">4</span>Trust Model &amp; Integration</a>
     <a href="#sec5"   class="nav-item">       <span class="nav-num">5</span>Operational Considerations</a>
+    <a href="#sec6"   class="nav-item">       <span class="nav-num">6</span>Getting Started</a>
+    <a href="#sec6pre" class="nav-item sub">  <span class="nav-num"></span>Prerequisites</a>
+    <a href="#sec6s1"  class="nav-item sub">  <span class="nav-num">S1</span>Open Onboarding Link</a>
+    <a href="#sec6s2"  class="nav-item sub">  <span class="nav-num">S2</span>Grant Consent</a>
+    <a href="#sec6s3"  class="nav-item sub">  <span class="nav-num">S3</span>Entra Admin Center</a>
+    <a href="#sec6s4"  class="nav-item sub">  <span class="nav-num">S4</span>Add External Method</a>
+    <a href="#sec6s5"  class="nav-item sub">  <span class="nav-num">S5</span>Configure Unibeam</a>
+    <a href="#sec6s6"  class="nav-item sub">  <span class="nav-num">S6</span>Enable &amp; Target</a>
+    <a href="#sec6s7"  class="nav-item sub">  <span class="nav-num">S7</span>User Registration</a>
+    <a href="#sec6ts"  class="nav-item sub">  <span class="nav-num"></span>Troubleshooting</a>
 
     <div class="sidebar-footer">
       <a href="mailto:support@unibeam.com">support@unibeam.com</a>
@@ -587,6 +597,189 @@
           <div class="callout">
             <div class="callout-title">Contact</div>
             <p>For technical architecture questions: <a href="mailto:support@unibeam.com">support@unibeam.com</a></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════════════════
+           6. GETTING STARTED — INTEGRATING MICROSOFT ENTRA
+           ══════════════════════════════════════════════════════════════════ -->
+      <div class="section" id="sec6">
+        <div class="section-header"><div class="sec-num">6</div>Getting Started — Integrating Microsoft Entra</div>
+        <div class="section-body">
+          <p>This section walks your Microsoft Entra administrator through every step required to enable Unibeam as an External Authentication Method in your organization.</p>
+
+          <h2>Your Integration Values</h2>
+          <div class="table-wrap">
+            <table class="kv-table">
+              <tbody>
+                <tr><td>Discovery Endpoint</td><td><code>https://ds.global.unibeam.com/.well-known/openid-configuration</code></td></tr>
+                <tr><td>App ID (Microsoft Application ID)</td><td><code>4d167c36-5e1a-4224-bdb7-fb32194716d3</code></td></tr>
+                <tr><td>Display Name</td><td><code>Unibeam MFA</code> (or any friendly name you prefer)</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout">
+            <div class="callout-title">Questions?</div>
+            <p>Contact <a href="mailto:support@unibeam.com">support@unibeam.com</a></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Prerequisites ─────────────────────────────────────────────── -->
+      <div class="subsection" id="sec6pre">
+        <div class="subsection-header"><span class="sec-label">Pre</span>&nbsp; Prerequisites</div>
+        <div class="section-body">
+          <p>Before you begin, make sure you have:</p>
+          <ul>
+            <li>Microsoft Entra Administrator account with <strong>Global Administrator</strong> or <strong>Authentication Policy Administrator</strong> role.</li>
+            <li>The onboarding URL provided by the Unibeam team (used in Step 1).</li>
+            <li>The integration values listed above.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ── Step 1 ─────────────────────────────────────────────────────── -->
+      <div class="subsection" id="sec6s1">
+        <div class="subsection-header"><span class="sec-label">Step 1</span>&nbsp; Open the Onboarding Link</div>
+        <div class="section-body">
+          <p>Your Unibeam contact will send you a unique onboarding URL. Open it in a browser while signed in as a Microsoft Entra administrator.</p>
+          <p>The URL follows this pattern:</p>
+          <div class="policy-rule">https://login.microsoftonline.com/organizations/v2.0/adminconsent
+  ?client_id=&lt;UNIBEAM_CLIENT_ID&gt;
+  &amp;scope=https://graph.microsoft.com/.default
+  &amp;redirect_uri=&lt;REDIRECT_URI&gt;
+  &amp;state=&lt;STATE&gt;</div>
+          <div class="callout warn">
+            <div class="callout-title">Note</div>
+            <p>Each URL is unique to your tenant. Do not share it with other organizations.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Step 2 ─────────────────────────────────────────────────────── -->
+      <div class="subsection" id="sec6s2">
+        <div class="subsection-header"><span class="sec-label">Step 2</span>&nbsp; Grant Microsoft Consent</div>
+        <div class="section-body">
+          <p>Microsoft Entra will display a consent page listing the permissions requested by Unibeam. Review the permissions and click <strong>Accept</strong>.</p>
+          <p>Permissions requested include:</p>
+          <ul>
+            <li>Reading the user's <code>mobilePhone</code> attribute (required to route MFA challenges).</li>
+            <li>Managing custom security attributes (used to track Unibeam enrollment state).</li>
+          </ul>
+          <p>After you accept, Microsoft redirects the browser to the Unibeam onboarding endpoint. Unibeam automatically records your <code>tenantId</code> and completes the tenant registration. No further action is needed in this step.</p>
+          <div class="callout">
+            <div class="callout-title">Note</div>
+            <p>This consent step is a one-time action per tenant.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Step 3 ─────────────────────────────────────────────────────── -->
+      <div class="subsection" id="sec6s3">
+        <div class="subsection-header"><span class="sec-label">Step 3</span>&nbsp; Open the Microsoft Entra Admin Center</div>
+        <div class="section-body">
+          <p>Go to <a href="https://entra.microsoft.com" target="_blank">https://entra.microsoft.com</a> and sign in as an administrator.</p>
+          <p>Navigate to:</p>
+          <div class="policy-rule"><span class="kw">Protection</span>  →  <span class="val">Authentication methods</span></div>
+        </div>
+      </div>
+
+      <!-- ── Step 4 ─────────────────────────────────────────────────────── -->
+      <div class="subsection" id="sec6s4">
+        <div class="subsection-header"><span class="sec-label">Step 4</span>&nbsp; Add an External Authentication Method</div>
+        <div class="section-body">
+          <p>In the Authentication methods blade, select <strong>Policies</strong> from the left menu. Then click:</p>
+          <div class="policy-rule"><span class="val">Add external MFA</span></div>
+          <p>This opens the configuration panel for a new external provider.</p>
+        </div>
+      </div>
+
+      <!-- ── Step 5 ─────────────────────────────────────────────────────── -->
+      <div class="subsection" id="sec6s5">
+        <div class="subsection-header"><span class="sec-label">Step 5</span>&nbsp; Configure the Unibeam Method</div>
+        <div class="section-body">
+          <p>Fill in the fields using the values below:</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Field</th><th>Value</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Display Name</strong></td><td>Unibeam MFA (or any name you prefer)</td></tr>
+                <tr><td><strong>Client ID</strong></td><td>Provided by your Unibeam contact</td></tr>
+                <tr><td><strong>Discovery Endpoint</strong></td><td><code>https://ds.global.unibeam.com/.well-known/openid-configuration</code></td></tr>
+                <tr><td><strong>App ID</strong></td><td><code>4d167c36-5e1a-4224-bdb7-fb32194716d3</code></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Click <strong>Save</strong> when all fields are filled in.</p>
+        </div>
+      </div>
+
+      <!-- ── Step 6 ─────────────────────────────────────────────────────── -->
+      <div class="subsection" id="sec6s6">
+        <div class="subsection-header"><span class="sec-label">Step 6</span>&nbsp; Enable and Target the Method</div>
+        <div class="section-body">
+          <p>The Unibeam method now appears under <strong>External authentication methods</strong>. Enable the toggle and assign it to the users or groups that should use Unibeam for MFA.</p>
+          <ul>
+            <li>Only users in targeted groups will see the Unibeam option during sign-in.</li>
+            <li>You can start with a pilot group and expand assignment later.</li>
+          </ul>
+          <div class="callout">
+            <div class="callout-title">Note</div>
+            <p>Changes to group targeting may take a few minutes to propagate across the tenant.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Step 7 ─────────────────────────────────────────────────────── -->
+      <div class="subsection" id="sec6s7">
+        <div class="subsection-header"><span class="sec-label">Step 7</span>&nbsp; User Registration</div>
+        <div class="section-body">
+          <p>Each user must register Unibeam once before it becomes available at sign-in. Ask users to:</p>
+          <ol>
+            <li>Open <a href="https://mysignins.microsoft.com/security-info" target="_blank">https://mysignins.microsoft.com/security-info</a></li>
+            <li>Click <strong>Add sign-in method</strong> and choose <strong>Unibeam MFA</strong>.</li>
+            <li>Follow the on-screen prompts to complete enrollment.</li>
+          </ol>
+          <div class="callout">
+            <div class="callout-title">One-time step</div>
+            <p>Registration is a one-time step. Once complete, Unibeam will be available as an MFA option on every subsequent sign-in.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Troubleshooting ────────────────────────────────────────────── -->
+      <div class="subsection" id="sec6ts">
+        <div class="subsection-header"><span class="sec-label">TS</span>&nbsp; Troubleshooting</div>
+        <div class="section-body">
+          <p>If you encounter issues during setup, refer to the checklist below:</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Issue</th><th>Resolution</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><strong>Consent page shows an error</strong></td>
+                  <td>Ensure you are signed in as a Global Administrator or Authentication Policy Administrator.</td>
+                </tr>
+                <tr>
+                  <td><strong>External MFA option not visible</strong></td>
+                  <td>The feature may need to be enabled at the tenant level. Contact your Unibeam representative.</td>
+                </tr>
+                <tr>
+                  <td><strong>Users don't see Unibeam in their security info</strong></td>
+                  <td>Confirm the method is enabled and the user's account is in a targeted group.</td>
+                </tr>
+                <tr>
+                  <td><strong>Authentication fails after registration</strong></td>
+                  <td>Verify the Discovery Endpoint and App ID are entered exactly as provided.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout">
+            <div class="callout-title">Further assistance</div>
+            <p>Contact the Unibeam support team: <a href="mailto:support@unibeam.com">support@unibeam.com</a></p>
           </div>
         </div>
       </div>
