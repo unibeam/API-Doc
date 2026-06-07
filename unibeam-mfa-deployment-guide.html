@@ -371,6 +371,8 @@
     .nav-path-item.highlight { background: #f59e0b; color: #fff; }
     .nav-path-arrow { color: #999; font-size: 14px; }
 
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
     @media (max-width: 800px) {
       #sidebar { display: none; }
       .content { padding: 0 18px 40px; }
@@ -1156,12 +1158,34 @@
                       </div>
                       <!-- Message -->
                       <div style="font-size:12px;color:#fff;font-weight:600;line-height:1.4;margin-bottom:10px;">Please approve login to Microsoft by typing the number you see on screen</div>
-                      <!-- Number entry -->
+                      <!-- Number entry input -->
                       <div style="background:rgba(0,0,0,.25);border-radius:8px;padding:8px;margin-bottom:10px;text-align:center;">
-                        <div style="font-size:10px;color:rgba(255,255,255,.7);margin-bottom:4px;">Enter the number shown on screen</div>
-                        <div class="highlight-box" style="display:inline-block;background:rgba(255,255,255,.15);border:2px solid #f59e0b;border-radius:6px;padding:4px 16px;">
-                          <div class="highlight-label" style="font-size:8px;">Type this number</div>
-                          <span style="font-size:22px;font-weight:800;color:#fff;letter-spacing:4px;">37</span>
+                        <div style="font-size:10px;color:rgba(255,255,255,.7);margin-bottom:6px;">Enter the number shown on screen</div>
+                        <div style="position:relative;">
+                          <div class="highlight-box" style="border:2px solid #f59e0b;border-radius:8px;padding:2px;">
+                            <div class="highlight-label" style="font-size:8px;">Type here using keyboard</div>
+                            <div style="background:rgba(255,255,255,.95);border-radius:6px;padding:8px 12px;display:flex;align-items:center;justify-content:center;gap:4px;">
+                              <span style="font-size:22px;font-weight:800;color:#2B7FFF;letter-spacing:6px;">_ _</span>
+                              <span style="width:2px;height:22px;background:#2B7FFF;border-radius:1px;animation:blink 1s step-end infinite;display:inline-block;"></span>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Mobile keyboard hint -->
+                        <div style="margin-top:8px;background:rgba(0,0,0,.3);border-radius:6px;padding:6px 4px;">
+                          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-bottom:3px;">
+                            <div style="background:rgba(255,255,255,.85);border-radius:4px;padding:5px 2px;text-align:center;font-size:12px;font-weight:600;color:#111;">1</div>
+                            <div style="background:rgba(255,255,255,.85);border-radius:4px;padding:5px 2px;text-align:center;font-size:12px;font-weight:600;color:#111;">2</div>
+                            <div style="background:rgba(255,255,255,.85);border-radius:4px;padding:5px 2px;text-align:center;font-size:12px;font-weight:600;color:#111;">3</div>
+                            <div style="background:rgba(255,255,255,.85);border-radius:4px;padding:5px 2px;text-align:center;font-size:12px;font-weight:600;color:#111;">4</div>
+                            <div style="background:rgba(255,255,255,.85);border-radius:4px;padding:5px 2px;text-align:center;font-size:12px;font-weight:600;color:#111;">5</div>
+                            <div style="background:rgba(255,255,255,.85);border-radius:4px;padding:5px 2px;text-align:center;font-size:12px;font-weight:600;color:#111;">6</div>
+                            <div style="background:rgba(255,255,255,.85);border-radius:4px;padding:5px 2px;text-align:center;font-size:12px;font-weight:600;color:#111;">7</div>
+                            <div style="background:rgba(255,255,255,.85);border-radius:4px;padding:5px 2px;text-align:center;font-size:12px;font-weight:600;color:#111;">8</div>
+                            <div style="background:rgba(255,255,255,.85);border-radius:4px;padding:5px 2px;text-align:center;font-size:12px;font-weight:600;color:#111;">9</div>
+                            <div style="background:rgba(255,255,255,.5);border-radius:4px;padding:5px 2px;text-align:center;font-size:10px;color:#fff;"></div>
+                            <div style="background:rgba(255,255,255,.85);border-radius:4px;padding:5px 2px;text-align:center;font-size:12px;font-weight:600;color:#111;">0</div>
+                            <div style="background:rgba(255,255,255,.5);border-radius:4px;padding:5px 2px;text-align:center;font-size:10px;color:#fff;">⌫</div>
+                          </div>
                         </div>
                       </div>
                       <!-- Action buttons -->
