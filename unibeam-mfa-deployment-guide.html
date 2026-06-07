@@ -274,6 +274,103 @@
       padding: 1px 7px; border-radius: 8px; margin-bottom: 4px;
     }
 
+    /* ── Mockup frames ── */
+    .mockup-wrap { margin: 16px 0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,.15); border: 1px solid #d0d7de; }
+    .mockup-bar {
+      background: #f0f2f5; padding: 8px 12px;
+      display: flex; align-items: center; gap: 8px;
+      border-bottom: 1px solid #d0d7de;
+    }
+    .mockup-dots { display: flex; gap: 5px; }
+    .mockup-dots span { width: 10px; height: 10px; border-radius: 50%; }
+    .mockup-dot-r { background: #ff5f57; }
+    .mockup-dot-y { background: #febc2e; }
+    .mockup-dot-g { background: #28c840; }
+    .mockup-url { flex: 1; background: #fff; border: 1px solid #ccc; border-radius: 4px; padding: 3px 10px; font-size: 11px; color: #555; font-family: monospace; display: flex; align-items: center; gap: 5px; }
+    .mockup-url .lock { color: #2da44e; font-size: 10px; }
+    .mockup-body { background: #fff; }
+
+    /* MS Consent page */
+    .ms-consent { padding: 0; }
+    .ms-consent-header { background: #fff; padding: 14px 24px; border-bottom: 1px solid #e8e8e8; display: flex; align-items: center; gap: 8px; }
+    .ms-logo { display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: #323130; }
+    .ms-logo svg { width: 20px; height: 20px; }
+    .ms-consent-body { max-width: 440px; margin: 0 auto; padding: 28px 24px 24px; }
+    .ms-consent-app { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+    .ms-app-icon { width: 44px; height: 44px; background: #0078d4; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 800; color: #fff; flex-shrink: 0; }
+    .ms-app-name { font-size: 16px; font-weight: 600; color: #323130; }
+    .ms-app-pub { font-size: 12px; color: #605e5c; display: flex; align-items: center; gap: 4px; }
+    .ms-app-pub .verified { color: #2da44e; font-size: 11px; }
+    .ms-perm-title { font-size: 14px; font-weight: 600; color: #323130; margin-bottom: 4px; }
+    .ms-perm-sub { font-size: 12px; color: #605e5c; margin-bottom: 12px; }
+    .ms-perm-list { border: 1px solid #edebe9; border-radius: 4px; overflow: hidden; margin-bottom: 16px; }
+    .ms-perm-item { padding: 10px 14px; font-size: 12px; color: #323130; display: flex; align-items: flex-start; gap: 8px; border-bottom: 1px solid #edebe9; }
+    .ms-perm-item:last-child { border-bottom: none; }
+    .ms-perm-item .pi-icon { color: #0078d4; font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+    .ms-perm-item .pi-text strong { display: block; font-weight: 600; }
+    .ms-perm-item .pi-text span { color: #605e5c; font-size: 11px; }
+    .ms-notice { font-size: 11px; color: #605e5c; margin-bottom: 16px; line-height: 1.5; }
+    .ms-btns { display: flex; gap: 10px; }
+    .ms-btn-accept { background: #0078d4; color: #fff; border: none; border-radius: 2px; padding: 8px 20px; font-size: 13px; font-weight: 600; cursor: pointer; }
+    .ms-btn-cancel { background: #fff; color: #323130; border: 1px solid #8a8886; border-radius: 2px; padding: 8px 20px; font-size: 13px; cursor: pointer; }
+    .highlight-box { border: 2.5px solid #f59e0b; border-radius: 4px; background: rgba(245,158,11,.07); position: relative; }
+    .highlight-label { position: absolute; top: -11px; right: 8px; background: #f59e0b; color: #fff; font-size: 9px; font-weight: 800; padding: 1px 7px; border-radius: 8px; letter-spacing: .4px; text-transform: uppercase; white-space: nowrap; }
+
+    /* Entra admin center mockup */
+    .entra-shell { display: flex; min-height: 260px; font-size: 12px; }
+    .entra-sidebar { width: 200px; min-width: 200px; background: #faf9f8; border-right: 1px solid #edebe9; padding: 8px 0; flex-shrink: 0; }
+    .entra-nav-group { padding: 4px 0; }
+    .entra-nav-label { font-size: 10px; font-weight: 700; color: #a19f9d; text-transform: uppercase; letter-spacing: .8px; padding: 6px 14px 2px; }
+    .entra-nav-item { padding: 7px 14px; display: flex; align-items: center; gap: 8px; color: #323130; cursor: pointer; border-left: 3px solid transparent; font-size: 12px; }
+    .entra-nav-item:hover { background: #f0eded; }
+    .entra-nav-item.active { background: #e8f0fe; border-left-color: #0078d4; color: #0078d4; font-weight: 600; }
+    .entra-nav-item.parent { font-weight: 600; color: #323130; }
+    .entra-nav-item.child { padding-left: 30px; font-size: 11.5px; }
+    .entra-nav-item.child.active { background: #e8f0fe; border-left-color: #0078d4; color: #0078d4; }
+    .entra-topbar { background: #0078d4; padding: 0 16px; height: 44px; display: flex; align-items: center; gap: 10px; }
+    .entra-topbar-title { color: #fff; font-size: 13px; font-weight: 600; }
+    .entra-main { flex: 1; padding: 20px 24px; background: #fff; }
+    .entra-page-title { font-size: 18px; font-weight: 600; color: #323130; margin-bottom: 6px; }
+    .entra-page-sub { font-size: 12px; color: #605e5c; margin-bottom: 16px; }
+    .entra-tab-bar { display: flex; gap: 0; border-bottom: 1px solid #edebe9; margin-bottom: 16px; }
+    .entra-tab { padding: 8px 16px; font-size: 12px; color: #605e5c; cursor: pointer; border-bottom: 2px solid transparent; }
+    .entra-tab.active { color: #0078d4; border-bottom-color: #0078d4; font-weight: 600; }
+    .entra-toolbar { display: flex; gap: 8px; margin-bottom: 14px; }
+    .entra-btn { display: flex; align-items: center; gap: 5px; padding: 6px 14px; border-radius: 2px; font-size: 12px; cursor: pointer; white-space: nowrap; }
+    .entra-btn-primary { background: #0078d4; color: #fff; border: none; font-weight: 600; }
+    .entra-btn-secondary { background: #fff; color: #323130; border: 1px solid #8a8886; }
+    .entra-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .entra-table th { background: #faf9f8; padding: 8px 12px; text-align: left; font-size: 11px; font-weight: 700; color: #605e5c; border-bottom: 1px solid #edebe9; }
+    .entra-table td { padding: 9px 12px; border-bottom: 1px solid #f3f2f1; color: #323130; vertical-align: middle; }
+    .entra-table tr:hover td { background: #f8f8f8; }
+    .entra-toggle { display: inline-flex; align-items: center; gap: 6px; }
+    .entra-toggle-track { width: 36px; height: 18px; border-radius: 9px; display: flex; align-items: center; padding: 2px; }
+    .entra-toggle-track.on { background: #0078d4; justify-content: flex-end; }
+    .entra-toggle-track.off { background: #a19f9d; justify-content: flex-start; }
+    .entra-toggle-thumb { width: 14px; height: 14px; border-radius: 50%; background: #fff; }
+    .entra-status-badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 700; }
+    .entra-status-enabled { background: #dff6dd; color: #107c10; }
+    .entra-status-disabled { background: #fde7e9; color: #a80000; }
+
+    /* Step panel */
+    .step-panel { display: flex; gap: 20px; align-items: flex-start; margin: 14px 0; }
+    .step-panel-text { flex: 1; }
+    .step-panel-img { flex: 1; max-width: 50%; }
+    @media (max-width: 900px) { .step-panel { flex-direction: column; } .step-panel-img { max-width: 100%; } }
+
+    /* Employee step number */
+    .emp-step { display: flex; gap: 14px; align-items: flex-start; margin: 14px 0; padding: 14px; background: var(--bg-subtle); border-radius: 7px; border: 1px solid var(--border); }
+    .emp-step-num { width: 28px; height: 28px; background: var(--accent); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; flex-shrink: 0; }
+    .emp-step-body { flex: 1; }
+    .emp-step-title { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .emp-step-desc { font-size: 12.5px; color: #444; line-height: 1.6; }
+
+    /* Nav arrow marker */
+    .nav-path { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin: 10px 0; }
+    .nav-path-item { background: var(--navy); color: #fff; padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+    .nav-path-item.highlight { background: #f59e0b; color: #fff; }
+    .nav-path-arrow { color: #999; font-size: 14px; }
+
     @media (max-width: 800px) {
       #sidebar { display: none; }
       .content { padding: 0 18px 40px; }
@@ -304,16 +401,17 @@
     <a href="#sec3"   class="nav-item">       <span class="nav-num">3</span>Identity Signals</a>
     <a href="#sec4"   class="nav-item">       <span class="nav-num">4</span>Trust Model &amp; Integration</a>
     <a href="#sec5"   class="nav-item">       <span class="nav-num">5</span>Operational Considerations</a>
-    <a href="#sec6"   class="nav-item">       <span class="nav-num">6</span>Getting Started</a>
-    <a href="#sec6pre" class="nav-item sub">  <span class="nav-num"></span>Prerequisites</a>
-    <a href="#sec6s1"  class="nav-item sub">  <span class="nav-num">S1</span>Open Onboarding Link</a>
-    <a href="#sec6s2"  class="nav-item sub">  <span class="nav-num">S2</span>Grant Consent</a>
-    <a href="#sec6s3"  class="nav-item sub">  <span class="nav-num">S3</span>Entra Admin Center</a>
-    <a href="#sec6s4"  class="nav-item sub">  <span class="nav-num">S4</span>Add External Method</a>
-    <a href="#sec6s5"  class="nav-item sub">  <span class="nav-num">S5</span>Configure Unibeam</a>
-    <a href="#sec6s6"  class="nav-item sub">  <span class="nav-num">S6</span>Enable &amp; Target</a>
-    <a href="#sec6s7"  class="nav-item sub">  <span class="nav-num">S7</span>User Registration</a>
-    <a href="#sec6ts"  class="nav-item sub">  <span class="nav-num"></span>Troubleshooting</a>
+    <a href="#sec6"    class="nav-item">       <span class="nav-num">6</span>Getting Started</a>
+    <a href="#sec6pre" class="nav-item sub">   <span class="nav-num">6.0</span>Prerequisites</a>
+    <a href="#sec6s1"  class="nav-item sub">   <span class="nav-num">6.1</span>Open Onboarding Link</a>
+    <a href="#sec6s2"  class="nav-item sub">   <span class="nav-num">6.2</span>Grant Consent</a>
+    <a href="#sec6s3"  class="nav-item sub">   <span class="nav-num">6.3</span>Entra Admin Center</a>
+    <a href="#sec6s4"  class="nav-item sub">   <span class="nav-num">6.4</span>Add External Method</a>
+    <a href="#sec6s5"  class="nav-item sub">   <span class="nav-num">6.5</span>Configure Unibeam</a>
+    <a href="#sec6s6"  class="nav-item sub">   <span class="nav-num">6.6</span>Enable &amp; Target</a>
+    <a href="#sec6s7"  class="nav-item sub">   <span class="nav-num">6.7</span>IT Admin Setup</a>
+    <a href="#sec6emp" class="nav-item sub">   <span class="nav-num">6.8</span>Employee Setup</a>
+    <a href="#sec6ts"  class="nav-item sub">   <span class="nav-num">TS</span>Troubleshooting</a>
 
     <div class="sidebar-footer">
       <a href="mailto:support@unibeam.com">support@unibeam.com</a>
@@ -608,143 +706,423 @@
         <div class="section-header"><div class="sec-num">6</div>Getting Started — Integrating Microsoft Entra</div>
         <div class="section-body">
           <p>This section walks your Microsoft Entra administrator through every step required to enable Unibeam as an External Authentication Method in your organization.</p>
-
           <h2>Your Integration Values</h2>
           <div class="table-wrap">
             <table class="kv-table">
               <tbody>
                 <tr><td>Discovery Endpoint</td><td><code>https://ds.global.unibeam.com/.well-known/openid-configuration</code></td></tr>
-                <tr><td>App ID (Microsoft Application ID)</td><td><code>4d167c36-5e1a-4224-bdb7-fb32194716d3</code></td></tr>
-                <tr><td>Display Name</td><td><code>Unibeam MFA</code> (or any friendly name you prefer)</td></tr>
+                <tr><td>App ID</td><td><code>Provided by your Unibeam contact</code></td></tr>
+                <tr><td>Display Name</td><td><code>Unibeam Auth</code> (or any friendly name your employees will recognise)</td></tr>
               </tbody>
             </table>
           </div>
-
-          <div class="callout">
-            <div class="callout-title">Questions?</div>
-            <p>Contact <a href="mailto:support@unibeam.com">support@unibeam.com</a></p>
-          </div>
+          <div class="callout"><div class="callout-title">Questions?</div><p>Contact <a href="mailto:support@unibeam.com">support@unibeam.com</a></p></div>
         </div>
       </div>
 
-      <!-- ── Prerequisites ─────────────────────────────────────────────── -->
+      <!-- ── 6.0 Prerequisites ──────────────────────────────────────────── -->
       <div class="subsection" id="sec6pre">
-        <div class="subsection-header"><span class="sec-label">Pre</span>&nbsp; Prerequisites</div>
+        <div class="subsection-header"><span class="sec-label">6.0</span>&nbsp; Prerequisites</div>
         <div class="section-body">
           <p>Before you begin, make sure you have:</p>
           <ul>
             <li>Microsoft Entra Administrator account with <strong>Global Administrator</strong> or <strong>Authentication Policy Administrator</strong> role.</li>
-            <li>The onboarding URL provided by the Unibeam team (used in Step 1).</li>
+            <li>The onboarding URL provided by the Unibeam team (used in step 6.1).</li>
             <li>The integration values listed above.</li>
           </ul>
         </div>
       </div>
 
-      <!-- ── Step 1 ─────────────────────────────────────────────────────── -->
+      <!-- ── 6.1 Open Onboarding Link ───────────────────────────────────── -->
       <div class="subsection" id="sec6s1">
-        <div class="subsection-header"><span class="sec-label">Step 1</span>&nbsp; Open the Onboarding Link</div>
+        <div class="subsection-header"><span class="sec-label">6.1</span>&nbsp; Open the Onboarding Link</div>
         <div class="section-body">
-          <p>Your Unibeam contact will send you a unique onboarding URL. Open it in a browser while signed in as a Microsoft Entra administrator.</p>
+          <p>Your Unibeam contact will send you a unique onboarding URL. Open it in a browser while signed in as a Microsoft Entra administrator. Opening this link will take you directly to Microsoft's admin consent page for Unibeam Auth.</p>
           <p>The URL follows this pattern:</p>
           <div class="policy-rule">https://login.microsoftonline.com/organizations/v2.0/adminconsent
   ?client_id=&lt;UNIBEAM_CLIENT_ID&gt;
   &amp;scope=https://graph.microsoft.com/.default
   &amp;redirect_uri=&lt;REDIRECT_URI&gt;
   &amp;state=&lt;STATE&gt;</div>
-          <div class="callout warn">
-            <div class="callout-title">Note</div>
-            <p>Each URL is unique to your tenant. Do not share it with other organizations.</p>
+          <div class="callout warn"><div class="callout-title">Note</div><p>Each URL is unique to your tenant. Do not share it with other organizations.</p></div>
+
+          <!-- Mockup: Microsoft consent page -->
+          <h3>What you will see</h3>
+          <div class="mockup-wrap">
+            <div class="mockup-bar">
+              <div class="mockup-dots"><span class="mockup-dot-r"></span><span class="mockup-dot-y"></span><span class="mockup-dot-g"></span></div>
+              <div class="mockup-url"><span class="lock">🔒</span> login.microsoftonline.com/organizations/v2.0/adminconsent?client_id=…</div>
+            </div>
+            <div class="mockup-body ms-consent">
+              <div class="ms-consent-header">
+                <div class="ms-logo">
+                  <svg viewBox="0 0 20 20" fill="none"><rect width="9" height="9" fill="#F25022"/><rect x="11" width="9" height="9" fill="#7FBA00"/><rect y="11" width="9" height="9" fill="#00A4EF"/><rect x="11" y="11" width="9" height="9" fill="#FFB900"/></svg>
+                  Microsoft
+                </div>
+              </div>
+              <div class="ms-consent-body">
+                <div class="ms-consent-app">
+                  <div class="ms-app-icon">U</div>
+                  <div>
+                    <div class="ms-app-name">Unibeam Auth</div>
+                    <div class="ms-app-pub">Unibeam Ltd &nbsp;<span class="verified">✓ Verified publisher</span></div>
+                  </div>
+                </div>
+                <div class="ms-perm-title">Permissions requested</div>
+                <div class="ms-perm-sub">Review these permissions for your organization</div>
+                <div class="ms-perm-list" style="position:relative;">
+                  <div class="highlight-box" style="margin:0;">
+                    <div class="highlight-label">Permissions granted</div>
+                    <div class="ms-perm-item">
+                      <span class="pi-icon">📋</span>
+                      <div class="pi-text"><strong>Read user mobile phone attributes</strong><span>Required to route MFA challenges to the correct subscriber</span></div>
+                    </div>
+                    <div class="ms-perm-item">
+                      <span class="pi-icon">🔒</span>
+                      <div class="pi-text"><strong>Manage custom security attributes</strong><span>Used to store SIMId, DeviceId and ChangeTimestamp on the user object</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="ms-notice">Accepting grants these permissions to Unibeam Auth for all users in your organization. This is a one-time consent per tenant.</div>
+                <div class="ms-btns">
+                  <button class="ms-btn-accept" style="position:relative;">
+                    Accept
+                    <span style="position:absolute;top:-10px;right:-10px;background:#f59e0b;color:#fff;font-size:9px;font-weight:800;padding:1px 6px;border-radius:8px;">Click here</span>
+                  </button>
+                  <button class="ms-btn-cancel">Cancel</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- ── Step 2 ─────────────────────────────────────────────────────── -->
+      <!-- ── 6.2 Grant Consent ───────────────────────────────────────────── -->
       <div class="subsection" id="sec6s2">
-        <div class="subsection-header"><span class="sec-label">Step 2</span>&nbsp; Grant Microsoft Consent</div>
+        <div class="subsection-header"><span class="sec-label">6.2</span>&nbsp; Grant Microsoft Consent</div>
         <div class="section-body">
-          <p>Microsoft Entra will display a consent page listing the permissions requested by Unibeam. Review the permissions and click <strong>Accept</strong>.</p>
-          <p>Permissions requested include:</p>
-          <ul>
-            <li>Reading the user's <code>mobilePhone</code> attribute (required to route MFA challenges).</li>
-            <li>Managing custom security attributes (used to track Unibeam enrollment state).</li>
-          </ul>
-          <p>After you accept, Microsoft redirects the browser to the Unibeam onboarding endpoint. Unibeam automatically records your <code>tenantId</code> and completes the tenant registration. No further action is needed in this step.</p>
-          <div class="callout">
-            <div class="callout-title">Note</div>
-            <p>This consent step is a one-time action per tenant.</p>
+          <p>On the consent page, review the permissions and click <strong>Accept</strong>. After you accept, Microsoft redirects the browser to the Unibeam onboarding endpoint. Unibeam automatically records your <code>tenantId</code> and completes the tenant registration — no further action is needed in this step.</p>
+          <div class="callout"><div class="callout-title">One-time action</div><p>This consent step applies once per tenant. You will not be prompted again.</p></div>
+        </div>
+      </div>
+
+      <!-- ── 6.3 Entra Admin Center ─────────────────────────────────────── -->
+      <div class="subsection" id="sec6s3">
+        <div class="subsection-header"><span class="sec-label">6.3</span>&nbsp; Open the Microsoft Entra Admin Center</div>
+        <div class="section-body">
+          <p>Go to <a href="https://entra.microsoft.com" target="_blank">https://entra.microsoft.com</a> and sign in as an administrator. In the left navigation, expand <strong>Protection</strong> and select <strong>Authentication methods</strong>.</p>
+
+          <div class="nav-path">
+            <span class="nav-path-item">Protection</span>
+            <span class="nav-path-arrow">→</span>
+            <span class="nav-path-item highlight">Authentication methods</span>
+          </div>
+
+          <!-- Mockup: Entra Admin Center -->
+          <div class="mockup-wrap">
+            <div class="mockup-bar">
+              <div class="mockup-dots"><span class="mockup-dot-r"></span><span class="mockup-dot-y"></span><span class="mockup-dot-g"></span></div>
+              <div class="mockup-url"><span class="lock">🔒</span> entra.microsoft.com/#view/Microsoft_AAD_IAM/AuthenticationMethodsMenuBlade</div>
+            </div>
+            <div class="mockup-body">
+              <div class="entra-topbar">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><rect width="9" height="9" fill="#fff" opacity=".9"/><rect x="11" width="9" height="9" fill="#fff" opacity=".7"/><rect y="11" width="9" height="9" fill="#fff" opacity=".7"/><rect x="11" y="11" width="9" height="9" fill="#fff" opacity=".5"/></svg>
+                <span class="entra-topbar-title">Microsoft Entra admin center</span>
+              </div>
+              <div class="entra-shell">
+                <div class="entra-sidebar">
+                  <div class="entra-nav-group">
+                    <div class="entra-nav-item">🏠 &nbsp;Home</div>
+                    <div class="entra-nav-item">👤 &nbsp;Identity</div>
+                    <div class="entra-nav-label">Security</div>
+                    <div class="entra-nav-item parent" style="background:#e8f0fe;border-left:3px solid #0078d4;color:#0078d4;">🔒 &nbsp;Protection</div>
+                    <div class="entra-nav-item child" style="color:#555;">Conditional Access</div>
+                    <div class="entra-nav-item child active" style="position:relative;">
+                      Authentication methods
+                      <span style="position:absolute;right:6px;top:50%;transform:translateY(-50%);background:#f59e0b;color:#fff;font-size:9px;font-weight:800;padding:1px 6px;border-radius:8px;">← here</span>
+                    </div>
+                    <div class="entra-nav-item child" style="color:#555;">Identity Protection</div>
+                    <div class="entra-nav-item child" style="color:#555;">MFA</div>
+                    <div class="entra-nav-label">Monitoring</div>
+                    <div class="entra-nav-item">📊 &nbsp;Reports</div>
+                  </div>
+                </div>
+                <div class="entra-main">
+                  <div class="entra-page-title">Authentication methods</div>
+                  <div class="entra-page-sub">Manage authentication methods available to users in your organization.</div>
+                  <div class="entra-tab-bar">
+                    <div class="entra-tab active">Policies</div>
+                    <div class="entra-tab">Settings</div>
+                    <div class="entra-tab">Activity</div>
+                  </div>
+                  <div style="font-size:12px;color:#605e5c;margin-bottom:10px;">Authentication methods and their settings are configured here.</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- ── Step 3 ─────────────────────────────────────────────────────── -->
-      <div class="subsection" id="sec6s3">
-        <div class="subsection-header"><span class="sec-label">Step 3</span>&nbsp; Open the Microsoft Entra Admin Center</div>
-        <div class="section-body">
-          <p>Go to <a href="https://entra.microsoft.com" target="_blank">https://entra.microsoft.com</a> and sign in as an administrator.</p>
-          <p>Navigate to:</p>
-          <div class="policy-rule"><span class="kw">Protection</span>  →  <span class="val">Authentication methods</span></div>
-        </div>
-      </div>
-
-      <!-- ── Step 4 ─────────────────────────────────────────────────────── -->
+      <!-- ── 6.4 Add External Method ────────────────────────────────────── -->
       <div class="subsection" id="sec6s4">
-        <div class="subsection-header"><span class="sec-label">Step 4</span>&nbsp; Add an External Authentication Method</div>
+        <div class="subsection-header"><span class="sec-label">6.4</span>&nbsp; Add an External Authentication Method</div>
         <div class="section-body">
-          <p>In the Authentication methods blade, select <strong>Policies</strong> from the left menu. Then click:</p>
-          <div class="policy-rule"><span class="val">Add external MFA</span></div>
-          <p>This opens the configuration panel for a new external provider.</p>
+          <p>In the <strong>Policies</strong> tab, scroll to the <strong>External authentication methods</strong> section and click <strong>+ Add external MFA</strong>. This opens the configuration panel for a new external provider.</p>
+
+          <!-- Mockup: Add external MFA button -->
+          <div class="mockup-wrap">
+            <div class="mockup-bar">
+              <div class="mockup-dots"><span class="mockup-dot-r"></span><span class="mockup-dot-y"></span><span class="mockup-dot-g"></span></div>
+              <div class="mockup-url"><span class="lock">🔒</span> entra.microsoft.com/#view/Microsoft_AAD_IAM/AuthenticationMethodsMenuBlade/~/AdminAuthMethods</div>
+            </div>
+            <div class="mockup-body" style="padding:20px 24px;">
+              <div style="font-size:13px;font-weight:600;color:#323130;margin-bottom:4px;">Authentication methods | Policies</div>
+              <div style="font-size:12px;color:#605e5c;margin-bottom:16px;">Configure which authentication methods are available to your users.</div>
+              <div style="font-size:12px;font-weight:700;color:#323130;margin-bottom:8px;padding-top:12px;border-top:1px solid #edebe9;">External authentication methods</div>
+              <div class="entra-toolbar">
+                <div class="highlight-box" style="display:inline-block;padding:2px;">
+                  <div class="highlight-label">Click here</div>
+                  <button class="entra-btn entra-btn-primary">＋ Add external MFA</button>
+                </div>
+                <button class="entra-btn entra-btn-secondary">🔄 Refresh</button>
+              </div>
+              <div style="font-size:12px;color:#a19f9d;padding:20px 0;text-align:center;border:1px dashed #edebe9;border-radius:4px;">No external MFA methods configured yet</div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- ── Step 5 ─────────────────────────────────────────────────────── -->
+      <!-- ── 6.5 Configure Unibeam ──────────────────────────────────────── -->
       <div class="subsection" id="sec6s5">
-        <div class="subsection-header"><span class="sec-label">Step 5</span>&nbsp; Configure the Unibeam Method</div>
+        <div class="subsection-header"><span class="sec-label">6.5</span>&nbsp; Configure the Unibeam Method</div>
         <div class="section-body">
-          <p>Fill in the fields using the values below:</p>
+          <p>Fill in the configuration panel using the values below. For the <strong>Display Name</strong>, we recommend using a name your employees will already recognise — such as <em>"Unibeam Auth"</em> or your organisation's preferred label.</p>
           <div class="table-wrap">
             <table>
               <thead><tr><th>Field</th><th>Value</th></tr></thead>
               <tbody>
-                <tr><td><strong>Display Name</strong></td><td>Unibeam MFA (or any name you prefer)</td></tr>
+                <tr><td><strong>Display Name</strong></td><td>Unibeam Auth <span style="color:#6b7280;font-size:11px;">(we suggest using a name your employees will know and recognise)</span></td></tr>
                 <tr><td><strong>Client ID</strong></td><td>Provided by your Unibeam contact</td></tr>
                 <tr><td><strong>Discovery Endpoint</strong></td><td><code>https://ds.global.unibeam.com/.well-known/openid-configuration</code></td></tr>
-                <tr><td><strong>App ID</strong></td><td><code>4d167c36-5e1a-4224-bdb7-fb32194716d3</code></td></tr>
+                <tr><td><strong>App ID</strong></td><td>Provided by your Unibeam contact</td></tr>
               </tbody>
             </table>
           </div>
           <p>Click <strong>Save</strong> when all fields are filled in.</p>
-        </div>
-      </div>
 
-      <!-- ── Step 6 ─────────────────────────────────────────────────────── -->
-      <div class="subsection" id="sec6s6">
-        <div class="subsection-header"><span class="sec-label">Step 6</span>&nbsp; Enable and Target the Method</div>
-        <div class="section-body">
-          <p>The Unibeam method now appears under <strong>External authentication methods</strong>. Enable the toggle and assign it to the users or groups that should use Unibeam for MFA.</p>
-          <ul>
-            <li>Only users in targeted groups will see the Unibeam option during sign-in.</li>
-            <li>You can start with a pilot group and expand assignment later.</li>
-          </ul>
-          <div class="callout">
-            <div class="callout-title">Note</div>
-            <p>Changes to group targeting may take a few minutes to propagate across the tenant.</p>
+          <!-- Mockup: Configuration panel -->
+          <div class="mockup-wrap">
+            <div class="mockup-bar">
+              <div class="mockup-dots"><span class="mockup-dot-r"></span><span class="mockup-dot-y"></span><span class="mockup-dot-g"></span></div>
+              <div class="mockup-url"><span class="lock">🔒</span> entra.microsoft.com — Add external authentication method</div>
+            </div>
+            <div class="mockup-body" style="padding:20px 24px;max-width:480px;">
+              <div style="font-size:14px;font-weight:600;color:#323130;margin-bottom:16px;">Add external authentication method</div>
+              <div style="margin-bottom:12px;">
+                <div style="font-size:11px;font-weight:600;color:#323130;margin-bottom:4px;">Display name <span style="color:#c50f1f;">*</span></div>
+                <div class="highlight-box" style="padding:2px;">
+                  <div class="highlight-label">Visible to employees</div>
+                  <input style="width:100%;padding:6px 10px;border:1px solid #8a8886;border-radius:2px;font-size:12px;color:#323130;background:#fff;" value="Unibeam Auth" readonly/>
+                </div>
+              </div>
+              <div style="margin-bottom:12px;">
+                <div style="font-size:11px;font-weight:600;color:#323130;margin-bottom:4px;">Client ID <span style="color:#c50f1f;">*</span></div>
+                <input style="width:100%;padding:6px 10px;border:1px solid #8a8886;border-radius:2px;font-size:12px;color:#605e5c;background:#faf9f8;" value="Provided by Unibeam" readonly/>
+              </div>
+              <div style="margin-bottom:12px;">
+                <div style="font-size:11px;font-weight:600;color:#323130;margin-bottom:4px;">Discovery endpoint <span style="color:#c50f1f;">*</span></div>
+                <input style="width:100%;padding:6px 10px;border:1px solid #8a8886;border-radius:2px;font-size:11px;color:#323130;background:#fff;" value="https://ds.global.unibeam.com/.well-known/openid-configuration" readonly/>
+              </div>
+              <div style="margin-bottom:18px;">
+                <div style="font-size:11px;font-weight:600;color:#323130;margin-bottom:4px;">App ID <span style="color:#c50f1f;">*</span></div>
+                <input style="width:100%;padding:6px 10px;border:1px solid #8a8886;border-radius:2px;font-size:12px;color:#605e5c;background:#faf9f8;" value="Provided by Unibeam" readonly/>
+              </div>
+              <div style="display:flex;gap:8px;">
+                <button class="entra-btn entra-btn-primary">Save</button>
+                <button class="entra-btn entra-btn-secondary">Cancel</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- ── Step 7 ─────────────────────────────────────────────────────── -->
-      <div class="subsection" id="sec6s7">
-        <div class="subsection-header"><span class="sec-label">Step 7</span>&nbsp; User Registration</div>
+      <!-- ── 6.6 Enable & Target ─────────────────────────────────────────── -->
+      <div class="subsection" id="sec6s6">
+        <div class="subsection-header"><span class="sec-label">6.6</span>&nbsp; Enable and Target the Method</div>
         <div class="section-body">
-          <p>Each user must register Unibeam once before it becomes available at sign-in. Ask users to:</p>
-          <ol>
-            <li>Open <a href="https://mysignins.microsoft.com/security-info" target="_blank">https://mysignins.microsoft.com/security-info</a></li>
-            <li>Click <strong>Add sign-in method</strong> and choose <strong>Unibeam MFA</strong>.</li>
-            <li>Follow the on-screen prompts to complete enrollment.</li>
-          </ol>
+          <p>The Unibeam method now appears under <strong>External authentication methods</strong>. Enable the toggle and assign it to the users or groups that should use Unibeam for MFA. You can start with a pilot group and expand assignment later.</p>
+
+          <!-- Mockup: Enable toggle -->
+          <div class="mockup-wrap">
+            <div class="mockup-bar">
+              <div class="mockup-dots"><span class="mockup-dot-r"></span><span class="mockup-dot-y"></span><span class="mockup-dot-g"></span></div>
+              <div class="mockup-url"><span class="lock">🔒</span> entra.microsoft.com — Authentication methods | Policies</div>
+            </div>
+            <div class="mockup-body" style="padding:20px 24px;">
+              <div style="font-size:12px;font-weight:700;color:#323130;margin-bottom:10px;">External authentication methods</div>
+              <div class="entra-toolbar">
+                <button class="entra-btn entra-btn-primary">＋ Add external MFA</button>
+                <button class="entra-btn entra-btn-secondary">🔄 Refresh</button>
+              </div>
+              <table class="entra-table">
+                <thead><tr><th>Name</th><th>Status</th><th>Target groups</th><th>Enable</th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Unibeam Auth</strong></td>
+                    <td><span class="entra-status-badge entra-status-enabled">Enabled</span></td>
+                    <td>
+                      <div class="highlight-box" style="display:inline-block;padding:2px 6px;">
+                        <div class="highlight-label">Assign groups here</div>
+                        <span style="font-size:11px;">Pilot-MFA-Group</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="entra-toggle">
+                        <div class="entra-toggle-track on"><div class="entra-toggle-thumb"></div></div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div style="font-size:11px;color:#a19f9d;margin-top:8px;">Changes to group targeting may take a few minutes to propagate.</div>
+            </div>
+          </div>
+          <div class="callout"><div class="callout-title">Note</div><p>Only users in targeted groups will see Unibeam Auth as an MFA option during sign-in.</p></div>
+        </div>
+      </div>
+
+      <!-- ── 6.7 IT Admin — User Registration ──────────────────────────── -->
+      <div class="subsection" id="sec6s7">
+        <div class="subsection-header"><span class="sec-label">6.7</span>&nbsp; IT Admin — Enable User Registration</div>
+        <div class="section-body">
+          <p>Once the method is enabled and targeted, users in the assigned groups can register Unibeam Auth from their <strong>My Security Info</strong> page. As an IT administrator, verify the method is visible by checking the registration portal below.</p>
+
+          <!-- Mockup: My Sign-ins security info -->
+          <div class="mockup-wrap">
+            <div class="mockup-bar">
+              <div class="mockup-dots"><span class="mockup-dot-r"></span><span class="mockup-dot-y"></span><span class="mockup-dot-g"></span></div>
+              <div class="mockup-url"><span class="lock">🔒</span> mysignins.microsoft.com/security-info</div>
+            </div>
+            <div class="mockup-body" style="padding:0;">
+              <div style="background:#0078d4;padding:10px 20px;color:#fff;font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px;">
+                <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><rect width="9" height="9" fill="#fff" opacity=".9"/><rect x="11" width="9" height="9" fill="#fff" opacity=".7"/><rect y="11" width="9" height="9" fill="#fff" opacity=".7"/><rect x="11" y="11" width="9" height="9" fill="#fff" opacity=".5"/></svg>
+                My Account — Security info
+              </div>
+              <div style="padding:20px 24px;">
+                <div style="font-size:14px;font-weight:600;color:#323130;margin-bottom:4px;">Security info</div>
+                <div style="font-size:12px;color:#605e5c;margin-bottom:16px;">Manage the methods you use to sign in and verify your identity.</div>
+                <div class="highlight-box" style="display:inline-block;margin-bottom:16px;padding:2px;">
+                  <div class="highlight-label">IT admin: verify this appears</div>
+                  <button class="entra-btn entra-btn-primary" style="font-size:12px;">＋ Add sign-in method</button>
+                </div>
+                <div style="border:1px solid #edebe9;border-radius:4px;overflow:hidden;">
+                  <div style="padding:10px 14px;border-bottom:1px solid #edebe9;display:flex;align-items:center;justify-content:space-between;">
+                    <div><div style="font-size:12px;font-weight:600;">Unibeam Auth</div><div style="font-size:11px;color:#605e5c;">SIM-based authentication</div></div>
+                    <span class="entra-status-badge entra-status-enabled" style="font-size:10px;">Available</span>
+                  </div>
+                  <div style="padding:10px 14px;border-bottom:1px solid #edebe9;display:flex;align-items:center;justify-content:space-between;">
+                    <div><div style="font-size:12px;font-weight:600;">Authenticator app</div><div style="font-size:11px;color:#605e5c;">Microsoft Authenticator</div></div>
+                    <span class="entra-status-badge" style="background:#fef3c7;color:#92400e;font-size:10px;">Registered</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout warn">
+            <div class="callout-title">Important</div>
+            <p>Completing this IT admin setup does <strong>not</strong> automatically register Unibeam Auth for employees. Each employee in the targeted group must individually complete the registration on their own device. See section 6.8 for the steps to share with your users.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 6.8 Employee Setup ──────────────────────────────────────────── -->
+      <div class="subsection" id="sec6emp">
+        <div class="subsection-header"><span class="sec-label">6.8</span>&nbsp; Employee Setup — Registering Unibeam Auth</div>
+        <div class="section-body">
+          <p>Share the following steps with every employee in the targeted group. Each person completes this once on their own device. After registration, Unibeam Auth is active silently on every subsequent sign-in — no further action is needed from the employee.</p>
+
+          <!-- Employee Step 1 -->
+          <div class="emp-step">
+            <div class="emp-step-num">1</div>
+            <div class="emp-step-body">
+              <div class="emp-step-title">Go to My Security Info</div>
+              <div class="emp-step-desc">Open a browser and go to <a href="https://mysignins.microsoft.com/security-info" target="_blank">mysignins.microsoft.com/security-info</a>. Sign in with your work account.</div>
+              <div class="mockup-wrap" style="margin-top:10px;">
+                <div class="mockup-bar">
+                  <div class="mockup-dots"><span class="mockup-dot-r"></span><span class="mockup-dot-y"></span><span class="mockup-dot-g"></span></div>
+                  <div class="mockup-url"><span class="lock">🔒</span> mysignins.microsoft.com/security-info</div>
+                </div>
+                <div class="mockup-body" style="padding:16px 20px;">
+                  <div style="font-size:13px;font-weight:600;color:#323130;margin-bottom:4px;">Security info</div>
+                  <div style="font-size:11px;color:#605e5c;margin-bottom:12px;">These are the methods you use to sign in or reset your password.</div>
+                  <div class="highlight-box" style="display:inline-block;padding:2px;">
+                    <div class="highlight-label">Step 1 — click here</div>
+                    <button class="entra-btn entra-btn-primary" style="font-size:12px;">＋ Add sign-in method</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Employee Step 2 -->
+          <div class="emp-step">
+            <div class="emp-step-num">2</div>
+            <div class="emp-step-body">
+              <div class="emp-step-title">Select Unibeam Auth</div>
+              <div class="emp-step-desc">In the <strong>Add a method</strong> dropdown, select <strong>Unibeam Auth</strong> (or the name your IT admin configured) and click <strong>Add</strong>.</div>
+              <div class="mockup-wrap" style="margin-top:10px;">
+                <div class="mockup-bar">
+                  <div class="mockup-dots"><span class="mockup-dot-r"></span><span class="mockup-dot-y"></span><span class="mockup-dot-g"></span></div>
+                  <div class="mockup-url"><span class="lock">🔒</span> mysignins.microsoft.com/security-info</div>
+                </div>
+                <div class="mockup-body" style="padding:16px 20px;">
+                  <div style="font-size:12px;font-weight:600;color:#323130;margin-bottom:10px;">Add a method</div>
+                  <div style="font-size:11px;color:#323130;margin-bottom:4px;">Which method would you like to add?</div>
+                  <div class="highlight-box" style="margin-bottom:10px;padding:2px;">
+                    <div class="highlight-label">Select this</div>
+                    <select style="width:100%;padding:6px 10px;border:1px solid #8a8886;border-radius:2px;font-size:12px;color:#323130;background:#fff;">
+                      <option>Unibeam Auth</option>
+                      <option>Authenticator app</option>
+                      <option>Phone</option>
+                    </select>
+                  </div>
+                  <div style="display:flex;gap:8px;">
+                    <button class="entra-btn entra-btn-primary" style="font-size:12px;">Add</button>
+                    <button class="entra-btn entra-btn-secondary" style="font-size:12px;">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Employee Step 3 -->
+          <div class="emp-step">
+            <div class="emp-step-num">3</div>
+            <div class="emp-step-body">
+              <div class="emp-step-title">Complete the enrollment</div>
+              <div class="emp-step-desc">Follow the on-screen prompts to complete enrollment. Unibeam will verify your SIM and device, then confirm registration. This takes under a minute.</div>
+              <div class="mockup-wrap" style="margin-top:10px;">
+                <div class="mockup-bar">
+                  <div class="mockup-dots"><span class="mockup-dot-r"></span><span class="mockup-dot-y"></span><span class="mockup-dot-g"></span></div>
+                  <div class="mockup-url"><span class="lock">🔒</span> mysignins.microsoft.com/security-info</div>
+                </div>
+                <div class="mockup-body" style="padding:16px 20px;text-align:center;">
+                  <div style="font-size:32px;margin-bottom:8px;">✅</div>
+                  <div style="font-size:13px;font-weight:600;color:#107c10;margin-bottom:4px;">Unibeam Auth registered</div>
+                  <div style="font-size:11px;color:#605e5c;">Your SIM and device identity have been verified. Unibeam Auth is now active on your account.</div>
+                  <div class="highlight-box" style="display:inline-block;margin-top:12px;padding:2px;">
+                    <div class="highlight-label">Registration complete</div>
+                    <button class="entra-btn entra-btn-primary" style="font-size:12px;">Done</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="callout">
-            <div class="callout-title">One-time step</div>
-            <p>Registration is a one-time step. Once complete, Unibeam will be available as an MFA option on every subsequent sign-in.</p>
+            <div class="callout-title">After registration</div>
+            <p>Unibeam Auth runs silently in the background on every sign-in. Employees will not need to take any action — no codes, no approvals.</p>
           </div>
         </div>
       </div>
@@ -753,32 +1131,46 @@
       <div class="subsection" id="sec6ts">
         <div class="subsection-header"><span class="sec-label">TS</span>&nbsp; Troubleshooting</div>
         <div class="section-body">
-          <p>If you encounter issues during setup, refer to the checklist below:</p>
+          <p>If you encounter issues during setup or rollout, refer to the checklist below:</p>
           <div class="table-wrap">
             <table>
-              <thead><tr><th>Issue</th><th>Resolution</th></tr></thead>
+              <thead><tr><th>Who</th><th>Issue</th><th>Resolution</th></tr></thead>
               <tbody>
                 <tr>
+                  <td><span class="badge badge-blue">IT Admin</span></td>
                   <td><strong>Consent page shows an error</strong></td>
                   <td>Ensure you are signed in as a Global Administrator or Authentication Policy Administrator.</td>
                 </tr>
                 <tr>
-                  <td><strong>External MFA option not visible</strong></td>
+                  <td><span class="badge badge-blue">IT Admin</span></td>
+                  <td><strong>External MFA option not visible in Entra</strong></td>
                   <td>The feature may need to be enabled at the tenant level. Contact your Unibeam representative.</td>
                 </tr>
                 <tr>
-                  <td><strong>Users don't see Unibeam in their security info</strong></td>
-                  <td>Confirm the method is enabled and the user's account is in a targeted group.</td>
+                  <td><span class="badge badge-blue">IT Admin</span></td>
+                  <td><strong>Authentication fails after configuration</strong></td>
+                  <td>Verify the Discovery Endpoint and App ID are entered exactly as provided by Unibeam.</td>
                 </tr>
                 <tr>
-                  <td><strong>Authentication fails after registration</strong></td>
-                  <td>Verify the Discovery Endpoint and App ID are entered exactly as provided.</td>
+                  <td><span class="badge badge-orange">Employee</span></td>
+                  <td><strong>Unibeam Auth not visible in security-info</strong></td>
+                  <td>Confirm the method is enabled in Entra and the employee's account is in a targeted group.</td>
+                </tr>
+                <tr>
+                  <td><span class="badge badge-orange">Employee</span></td>
+                  <td><strong>Registration fails or times out</strong></td>
+                  <td>Ensure the device has an active SIM with carrier signal. Wi-Fi-only devices cannot complete SIM authentication.</td>
+                </tr>
+                <tr>
+                  <td><span class="badge badge-orange">Employee</span></td>
+                  <td><strong>Unibeam Auth not available at sign-in after registration</strong></td>
+                  <td>Wait a few minutes for Entra to propagate group membership, then try again.</td>
                 </tr>
               </tbody>
             </table>
           </div>
           <div class="callout">
-            <div class="callout-title">Further assistance</div>
+            <div class="callout-title">Need more help?</div>
             <p>Contact the Unibeam support team: <a href="mailto:support@unibeam.com">support@unibeam.com</a></p>
           </div>
         </div>
