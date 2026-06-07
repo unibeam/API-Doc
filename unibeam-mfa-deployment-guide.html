@@ -432,7 +432,7 @@
       <div class="hero-eyebrow">Microsoft Entra External Authentication Method</div>
       <h1>Unibeam Auth<br>Microsoft EAM</h1>
       <p class="hero-sub">
-        Deploy SIM-based MFA for Microsoft Entra — no hardware tokens, no one-time codes. Carrier-backed, hardware-bound identity verification that replaces phishable second factors.
+        Deploy SIM-based MFA for Microsoft Entra — no hardware tokens, no one-time codes. Hardware-bound identity verification that replaces phishable second factors.
       </p>
     </div>
 
@@ -510,7 +510,7 @@
       <div class="subsection" id="sec1b1">
         <div class="subsubsection-header"><span class="sec-label">1.b.1</span>&nbsp; Unibeam as an Application + Hardware Solution — SIM &amp; eSIM Security vs. Apps and External Hardware Tokens (Yubico)</div>
         <div class="section-body">
-          <p>Unibeam combines two layers that no pure-software or pure-hardware solution provides together: a carrier-integrated application layer (the Unibeam Applet) running inside certified, tamper-resistant hardware (the SIM or eSIM). Understanding how this compares to software authenticators and to dedicated external hardware tokens like Yubico YubiKeys clarifies where each approach's security boundary actually sits.</p>
+          <p>Unibeam combines two layers that no pure-software or pure-hardware solution provides together: an application layer (the Unibeam Applet) running inside certified, tamper-resistant hardware (the SIM or eSIM). Understanding how this compares to software authenticators and to dedicated external hardware tokens like Yubico YubiKeys clarifies where each approach's security boundary actually sits.</p>
 
           <h2>The three security tiers</h2>
           <div class="hw-grid">
@@ -534,7 +534,7 @@
                 <div class="hw-row"><span class="dot dot-green"></span><div>No shared secret between server and client — challenge-response only</div></div>
                 <div class="hw-row"><span class="dot dot-red"></span><div>Requires physical procurement, shipping, and distribution to every user</div></div>
                 <div class="hw-row"><span class="dot dot-red"></span><div>Loss or damage requires re-provisioning; gap period forces a weaker fallback</div></div>
-                <div class="hw-row"><span class="dot dot-red"></span><div>No carrier-network signal — cannot detect SIM swap, device change, or MSISDN anomalies</div></div>
+                <div class="hw-row"><span class="dot dot-red"></span><div>No network signal — cannot detect SIM swap, device change, or MSISDN anomalies</div></div>
               </div>
             </div>
 
@@ -543,7 +543,7 @@
               <div class="hw-card-body">
                 <div class="hw-row"><span class="dot dot-green"></span><div>Unibeam Applet runs inside the SIM's Java Card secure execution environment — hardware-isolated</div></div>
                 <div class="hw-row"><span class="dot dot-green"></span><div>Subscriber credentials secured within SIM hardware; SIM swap does not transfer them</div></div>
-                <div class="hw-row"><span class="dot dot-green"></span><div>Challenge-response occurs on the carrier's internal AuC channel — unreachable from the public internet</div></div>
+                <div class="hw-row"><span class="dot dot-green"></span><div>Challenge-response occurs on an internal channel — unreachable from the public internet</div></div>
                 <div class="hw-row"><span class="dot dot-green"></span><div>eSIM: applet deployed OTA — no physical distribution, no gap period</div></div>
               </div>
             </div>
@@ -569,8 +569,8 @@
                 <tr><td>1</td><td>User</td><td>Submits primary credential (password) to Entra.</td></tr>
                 <tr><td>2</td><td>Entra</td><td>Validates password, delegates MFA to the registered External Authentication Method (Unibeam) via OIDC redirect.</td></tr>
                 <tr><td>3</td><td>Unibeam</td><td>Reads the user's <code>mobilePhone</code> attribute from Entra. Initiates a silent SIM authentication challenge directly with the mobile operator's network via the SIM Application Toolkit (SIM AT) channel.</td></tr>
-                <tr><td>4</td><td>SIM / Carrier</td><td>The Unibeam Applet on the SIM performs a challenge-response with the carrier's Authentication Centre (AuC), secured by the subscriber's hardware-bound credentials. No user interaction. No code. No push notification.</td></tr>
-                <tr><td>5</td><td>Unibeam</td><td>Receives confirmation from the carrier. Issues a signed OIDC <code>id_token</code> to Entra with claims including <code>SIMId</code>, <code>DeviceId</code>, and <code>ChangeTimestamp</code>.</td></tr>
+                <tr><td>4</td><td>SIM</td><td>The Unibeam Applet on the SIM performs a challenge-response with the employee to grant a validated authentication of the employee. No user interaction. No code. No push notification.</td></tr>
+                <tr><td>5</td><td>Unibeam</td><td>Receives confirmation from the Applet. Issues a signed OIDC <code>id_token</code> to Entra with claims including <code>SIMId</code>, <code>DeviceId</code>, and <code>ChangeTimestamp</code>.</td></tr>
                 <tr><td>6</td><td>Entra</td><td>Validates the token signature against Unibeam's JWKS endpoint, grants the session.</td></tr>
               </tbody>
             </table>
@@ -578,11 +578,11 @@
 
           <h2>Why there is nothing to intercept</h2>
           <div class="why">Reason</div>
-          <p>The challenge-response in step 4 occurs on the carrier's internal network between the AuC and the Unibeam Applet on the SIM. This channel is not accessible from the public internet. There is no code generated that the user sees, types, or transmits — so there is nothing for a proxy or SS7 attacker to capture. The subscriber's credentials never leave the SIM.</p>
+          <p>The challenge-response in step 4 occurs between the Unibeam Applet on the SIM and the employee's device. This channel is not accessible from the public internet. There is no code generated that the user sees, types, or transmits — so there is nothing for a proxy or attacker to capture. The subscriber's credentials never leave the SIM.</p>
 
           <h2>SIM hardware vs. phone number</h2>
           <div class="why">Reason</div>
-          <p>Authentication is bound to the credentials secured within the physical SIM hardware — not to the phone number (MSISDN). A SIM swap assigns a number to a different SIM; because the credentials live on the original SIM hardware, a swapped number does not inherit the authentication capability. The attacker's SIM will fail the carrier challenge.</p>
+          <p>Authentication is bound to the credentials secured within the physical SIM hardware — not to the phone number (MSISDN). A SIM swap assigns a number to a different SIM; because the credentials live on the original SIM hardware, a swapped number does not inherit the authentication capability. The attacker's SIM will fail the authentication challenge.</p>
         </div>
       </div>
 
@@ -596,7 +596,7 @@
 
           <h2><code>SIMId</code> — SIM hardware identity</h2>
           <div class="why">Why it matters</div>
-          <p>Unibeam generates a unique, persistent identifier that represents the specific SIM hardware used to complete the carrier authentication challenge. This identifier is internally derived and not based on external SIM attributes such as ICCID or any other readable property.</p>
+          <p>Unibeam generates a unique, persistent identifier that represents the specific SIM hardware used to complete the authentication. This identifier is internally derived and not based on external SIM attributes such as ICCID or any other readable property.</p>
 
           <h2><code>DeviceId</code> — Device hardware identity</h2>
           <div class="why">Why it matters</div>
@@ -631,8 +631,8 @@
                   <td><span class="badge badge-red">Block</span> + alert</td>
                 </tr>
                 <tr>
-                  <td>SIM swap at carrier</td>
-                  <td>New <code>SIMId</code>, carrier challenge fails on original SIM</td>
+                  <td>SIM swap detected</td>
+                  <td>New <code>SIMId</code>, authentication challenge fails on original SIM</td>
                   <td><span class="badge badge-red">Fails auth</span> + SIEM event</td>
                 </tr>
               </tbody>
@@ -650,7 +650,7 @@
 
           <h2>What you are trusting</h2>
           <div class="why">Reason</div>
-          <p>When Entra validates Unibeam's <code>id_token</code>, it trusts Unibeam's OIDC endpoint and signing keys. Unibeam relies on carrier network connectivity to reach the SIM, but the challenge itself is handled entirely by the Unibeam Applet on the SIM. The carrier is an enabler, not the root of trust — it provides the transport and the SIM as a secure execution environment, while the Unibeam Applet owns the identifier-based challenge end-to-end.</p>
+          <p>When Entra validates Unibeam's <code>id_token</code>, it trusts Unibeam's OIDC endpoint and signing keys. The challenge itself is handled entirely by the Unibeam Applet on the SIM, which owns the identifier-based challenge end-to-end.</p>
 
           <h2>What Unibeam can read from your tenant</h2>
           <div class="table-wrap">
@@ -683,7 +683,7 @@
         <div class="section-body">
 
           <h2>Coverage requirements</h2>
-          <p>SIM authentication requires the employee's device to have a carrier signal at authentication time. Wi-Fi-only devices (tablets without a SIM) or devices in no-signal environments cannot complete the carrier challenge. These cases need a defined fallback policy.</p>
+          <p>SIM authentication requires the employee's device to have an active SIM at authentication time. Wi-Fi-only devices (tablets without a SIM) or devices in no-signal environments cannot complete the authentication challenge. These cases need a defined fallback policy.</p>
 
           <h2>Employee onboarding</h2>
           <p>Each user registers once via <a href="https://mysignins.microsoft.com/security-info" target="_blank">mysignins.microsoft.com/security-info</a>. Registration links the user's Entra identity to their SIM. After that, authentication is silent — no ongoing user action required.</p>
@@ -1064,7 +1064,7 @@
                 </tr>
                 <tr>
                   <td><strong>Employee registration fails or times out</strong></td>
-                  <td>Ensure the device has an active SIM with carrier signal. Wi-Fi-only devices cannot complete SIM authentication.</td>
+                  <td>Ensure the device has an active SIM. Wi-Fi-only devices cannot complete SIM authentication.</td>
                 </tr>
                 <tr>
                   <td><strong>Unibeam Auth not available at sign-in after registration</strong></td>
