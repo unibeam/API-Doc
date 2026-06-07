@@ -770,17 +770,17 @@
                 </div>
                 <div class="ms-perm-title">Permissions requested</div>
                 <div class="ms-perm-sub">Review these permissions for your organization</div>
-                <div class="ms-perm-list" style="position:relative;">
-                  <div class="highlight-box" style="margin:0;">
-                    <div class="highlight-label">Permissions granted</div>
-                    <div class="ms-perm-item">
-                      <span class="pi-icon">📋</span>
-                      <div class="pi-text"><strong>Read user mobile phone attributes</strong><span>Required to route MFA challenges to the correct subscriber</span></div>
-                    </div>
-                    <div class="ms-perm-item">
-                      <span class="pi-icon">🔒</span>
-                      <div class="pi-text"><strong>Manage custom security attributes</strong><span>Used to store SIMId, DeviceId and ChangeTimestamp on the user object</span></div>
-                    </div>
+                <div style="background:#fff3cd;border:1px solid #f59e0b;border-radius:4px;padding:6px 10px;margin-bottom:8px;font-size:11px;font-weight:700;color:#92400e;display:flex;align-items:center;gap:6px;">
+                  <span>⚠️</span> Review these permissions carefully before clicking Accept
+                </div>
+                <div class="ms-perm-list" style="border:2px solid #f59e0b;border-radius:6px;">
+                  <div class="ms-perm-item">
+                    <span class="pi-icon">📋</span>
+                    <div class="pi-text"><strong>Read user mobile phone attributes</strong><span>Required to route MFA challenges to the correct subscriber</span></div>
+                  </div>
+                  <div class="ms-perm-item">
+                    <span class="pi-icon">🔒</span>
+                    <div class="pi-text"><strong>Manage custom security attributes</strong><span>Used to store SIMId, DeviceId and ChangeTimestamp on the user object</span></div>
                   </div>
                 </div>
                 <div class="ms-notice">Accepting grants these permissions to Unibeam Auth for all users in your organization. This is a one-time consent per tenant.</div>
@@ -970,15 +970,14 @@
                   <tr>
                     <td><strong>Unibeam Auth</strong></td>
                     <td><span class="entra-status-badge entra-status-enabled">Enabled</span></td>
+                    <td><span style="font-size:11px;">Pilot-MFA-Group</span></td>
                     <td>
-                      <div class="highlight-box" style="display:inline-block;padding:2px 6px;">
-                        <div class="highlight-label">Assign groups here</div>
-                        <span style="font-size:11px;">Pilot-MFA-Group</span>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="entra-toggle">
-                        <div class="entra-toggle-track on"><div class="entra-toggle-thumb"></div></div>
+                      <div class="highlight-box" style="display:inline-flex;align-items:center;padding:4px 8px;gap:6px;">
+                        <div class="highlight-label">Enable here</div>
+                        <div class="entra-toggle">
+                          <div class="entra-toggle-track on"><div class="entra-toggle-thumb"></div></div>
+                        </div>
+                        <span style="font-size:11px;color:#107c10;font-weight:600;">On</span>
                       </div>
                     </td>
                   </tr>
@@ -1100,14 +1099,94 @@
           <div class="emp-step">
             <div class="emp-step-num">3</div>
             <div class="emp-step-body">
-              <div class="emp-step-title">Complete the enrollment</div>
-              <div class="emp-step-desc">Follow the on-screen prompts to complete enrollment. Unibeam will verify your SIM and device, then confirm registration. This takes under a minute.</div>
-              <div class="mockup-wrap" style="margin-top:10px;">
+              <div class="emp-step-title">Approve the Unibeam challenge</div>
+              <div class="emp-step-desc">Unibeam will display a numeric challenge on your screen. You will receive a push notification on your mobile device asking you to enter the same number to confirm your identity.</div>
+
+              <!-- Side-by-side: browser challenge + phone notification -->
+              <div style="display:flex;gap:20px;align-items:flex-start;margin-top:14px;flex-wrap:wrap;">
+
+                <!-- Browser: numeric challenge screen -->
+                <div style="flex:1;min-width:240px;">
+                  <div style="font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px;">① On your computer screen</div>
+                  <div class="mockup-wrap">
+                    <div class="mockup-bar">
+                      <div class="mockup-dots"><span class="mockup-dot-r"></span><span class="mockup-dot-y"></span><span class="mockup-dot-g"></span></div>
+                      <div class="mockup-url"><span class="lock">🔒</span> login.microsoftonline.com</div>
+                    </div>
+                    <div class="mockup-body" style="padding:28px 20px;text-align:center;background:#f7f3ff;">
+                      <div style="font-size:11px;font-weight:700;color:#7c3aed;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;">Authentication Pending</div>
+                      <div style="font-size:12px;color:#4b5563;margin-bottom:18px;line-height:1.5;">To complete the authentication process, you will receive a pop-up request shortly. Your prompt attention is appreciated.</div>
+                      <div style="font-size:12px;color:#374151;margin-bottom:14px;">Please enter the following 2-digit code when prompted:</div>
+                      <div class="highlight-box" style="display:inline-block;padding:4px;">
+                        <div class="highlight-label">Enter this on your phone</div>
+                        <div style="border:2px solid #1a1a1a;border-radius:4px;padding:10px 28px;display:inline-block;">
+                          <span style="font-size:36px;font-weight:800;color:#111;letter-spacing:4px;">37</span>
+                        </div>
+                      </div>
+                      <div style="margin-top:18px;">
+                        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <rect x="10" y="5" width="60" height="70" rx="8" fill="#e9d5ff" stroke="#c4b5fd" stroke-width="2"/>
+                          <rect x="18" y="16" width="44" height="30" rx="3" fill="#ddd6fe"/>
+                          <rect x="26" y="20" width="14" height="10" rx="2" fill="#a78bfa" opacity=".6"/>
+                          <rect x="42" y="20" width="14" height="10" rx="2" fill="#c4b5fd" opacity=".4"/>
+                          <circle cx="40" cy="62" r="5" fill="#c4b5fd"/>
+                          <path d="M30 55 L50 55" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Phone: push notification -->
+                <div style="flex:1;min-width:200px;">
+                  <div style="font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px;">② On your mobile device</div>
+                  <!-- Phone shell -->
+                  <div style="width:220px;height:420px;background:linear-gradient(180deg,#2B7FFF 0%,#9810FA 100%);border-radius:32px;padding:14px;display:flex;flex-direction:column;align-items:center;box-shadow:0 8px 32px rgba(43,127,255,.35);position:relative;margin:0 auto;">
+                    <!-- Notch -->
+                    <div style="width:70px;height:14px;background:rgba(0,0,0,.35);border-radius:8px;margin-bottom:14px;"></div>
+                    <!-- Time -->
+                    <div style="color:rgba(255,255,255,.8);font-size:11px;font-weight:600;margin-bottom:10px;align-self:flex-start;padding-left:4px;">9:41</div>
+                    <!-- Notification card -->
+                    <div style="width:100%;background:rgba(255,255,255,.18);backdrop-filter:blur(10px);border-radius:14px;padding:12px 14px;border:1px solid rgba(255,255,255,.25);">
+                      <!-- App header -->
+                      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                        <div style="width:24px;height:24px;background:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#2B7FFF;flex-shrink:0;">U</div>
+                        <div style="font-size:10px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.5px;">Unibeam Auth</div>
+                        <div style="margin-left:auto;font-size:10px;color:rgba(255,255,255,.6);">now</div>
+                      </div>
+                      <!-- Message -->
+                      <div style="font-size:12px;color:#fff;font-weight:600;line-height:1.4;margin-bottom:10px;">Please approve login to Microsoft by typing the number you see on screen</div>
+                      <!-- Number entry -->
+                      <div style="background:rgba(0,0,0,.25);border-radius:8px;padding:8px;margin-bottom:10px;text-align:center;">
+                        <div style="font-size:10px;color:rgba(255,255,255,.7);margin-bottom:4px;">Enter the number shown on screen</div>
+                        <div class="highlight-box" style="display:inline-block;background:rgba(255,255,255,.15);border:2px solid #f59e0b;border-radius:6px;padding:4px 16px;">
+                          <div class="highlight-label" style="font-size:8px;">Type this number</div>
+                          <span style="font-size:22px;font-weight:800;color:#fff;letter-spacing:4px;">37</span>
+                        </div>
+                      </div>
+                      <!-- Action buttons -->
+                      <div style="display:flex;gap:8px;">
+                        <div style="flex:1;background:rgba(255,255,255,.9);border-radius:8px;padding:7px 0;text-align:center;font-size:11px;font-weight:700;color:#1a1a1a;">Deny</div>
+                        <div style="flex:1;background:#fff;border-radius:8px;padding:7px 0;text-align:center;font-size:11px;font-weight:700;color:#2B7FFF;position:relative;">
+                          Approve
+                          <span style="position:absolute;top:-8px;right:-4px;background:#f59e0b;color:#fff;font-size:8px;font-weight:800;padding:1px 5px;border-radius:6px;">tap here</span>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Home bar -->
+                    <div style="position:absolute;bottom:10px;width:60px;height:4px;background:rgba(255,255,255,.5);border-radius:2px;"></div>
+                  </div>
+                </div>
+
+              </div><!-- end side-by-side -->
+
+              <!-- Completion -->
+              <div class="mockup-wrap" style="margin-top:16px;">
                 <div class="mockup-bar">
                   <div class="mockup-dots"><span class="mockup-dot-r"></span><span class="mockup-dot-y"></span><span class="mockup-dot-g"></span></div>
                   <div class="mockup-url"><span class="lock">🔒</span> mysignins.microsoft.com/security-info</div>
                 </div>
-                <div class="mockup-body" style="padding:16px 20px;text-align:center;">
+                <div class="mockup-body" style="padding:20px;text-align:center;">
                   <div style="font-size:32px;margin-bottom:8px;">✅</div>
                   <div style="font-size:13px;font-weight:600;color:#107c10;margin-bottom:4px;">Unibeam Auth registered</div>
                   <div style="font-size:11px;color:#605e5c;">Your SIM and device identity have been verified. Unibeam Auth is now active on your account.</div>
@@ -1117,6 +1196,7 @@
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
 
