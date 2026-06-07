@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Unibeam Auth — Employee Setup Guide</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:       #1a1f2e;
+      --navy-mid:   #232a40;
+      --navy-light: #2d3550;
+      --accent:     #4a90e2;
+      --accent-lt:  #7ab8f5;
+      --text:       #333;
+      --muted:      #6b7280;
+      --border:     #e5e7eb;
+      --bg:         #fff;
+      --bg-subtle:  #f4f6fa;
+      --warn-bg:    #fef2f2;
+      --warn:       #c0392b;
+      --font:       'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); font-size: 14px; line-height: 1.7; color: var(--text); background: var(--bg-subtle); }
+
+    /* ── Top header ── */
+    .page-header {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      padding: 32px 40px 28px; border-bottom: 1px solid var(--navy-light);
+    }
+    .page-header-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 1.3px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+    .page-header h1 { font-size: 24px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .page-header p { font-size: 13px; color: rgba(255,255,255,.6); max-width: 520px; line-height: 1.6; }
+    .page-header-meta { margin-top: 14px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .meta-badge { font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 10px; background: rgba(74,144,226,.2); color: #7ab8f5; border: 1px solid rgba(74,144,226,.3); }
+
+    /* ── Page layout ── */
+    .page-body { max-width: 760px; margin: 0 auto; padding: 32px 24px 60px; }
+
+    /* ── Section card ── */
+    .card { background: #fff; border-radius: 10px; border: 1px solid var(--border); margin-bottom: 20px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+    .card-header { background: var(--navy); color: #fff; padding: 12px 18px; font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+    .card-body { padding: 22px 22px 18px; }
+
+    h2 { font-size: 13px; font-weight: 700; color: var(--navy); margin: 20px 0 7px; padding-bottom: 5px; border-bottom: 2px solid var(--accent); display: inline-block; }
+    p  { font-size: 13px; line-height: 1.7; color: #444; margin-bottom: 8px; }
+    a  { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    ul, ol { padding-left: 18px; margin-bottom: 10px; }
+    li { font-size: 13px; line-height: 1.75; color: #444; }
+
+    .callout { border-left: 3px solid var(--accent); background: var(--bg-subtle); border-radius: 0 5px 5px 0; padding: 10px 14px; margin: 12px 0; }
+    .callout.warn { border-left-color: var(--warn); background: var(--warn-bg); }
+    .callout.success { border-left-color: #107c10; background: #dff6dd; }
+    .callout-title { font-size: 11px; font-weight: 700; color: var(--accent); margin-bottom: 3px; }
+    .callout.warn .callout-title { color: var(--warn); }
+    .callout.success .callout-title { color: #107c10; }
+    .callout p { margin: 0; font-size: 12.5px; }
+
+    /* ── Step cards ── */
+    .emp-step { display: flex; gap: 16px; align-items: flex-start; margin: 16px 0; padding: 16px; background: var(--bg-subtle); border-radius: 8px; border: 1px solid var(--border); }
+    .emp-step-num { width: 32px; height: 32px; background: var(--accent); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; flex-shrink: 0; }
+    .emp-step-body { flex: 1; }
+    .emp-step-title { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .emp-step-desc { font-size: 12.5px; color: #444; line-height: 1.6; margin-bottom: 10px; }
+
+    /* ── Mockup frames ── */
+    .mockup-wrap { margin: 10px 0 0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,.12); border: 1px solid #d0d7de; }
+    .mockup-bar { background: #f0f2f5; padding: 7px 12px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #d0d7de; }
+    .mockup-dots { display: flex; gap: 5px; }
+    .mockup-dots span { width: 10px; height: 10px; border-radius: 50%; }
+    .mockup-dot-r { background: #ff5f57; }
+    .mockup-dot-y { background: #febc2e; }
+    .mockup-dot-g { background: #28c840; }
+    .mockup-url { flex: 1; background: #fff; border: 1px solid #ccc; border-radius: 4px; padding: 3px 10px; font-size: 11px; color: #555; font-family: monospace; display: flex; align-items: center; gap: 5px; }
+    .mockup-url .lock { color: #2da44e; }
+    .mockup-body { background: #fff; }
+
+    /* Entra UI atoms */
+    .entra-btn { display: inline-flex; align-items: center; gap: 5px; padding: 6px 14px; border-radius: 2px; font-size: 12px; cursor: pointer; white-space: nowrap; }
+    .entra-btn-primary { background: #0078d4; color: #fff; border: none; font-weight: 600; }
+    .entra-btn-secondary { background: #fff; color: #323130; border: 1px solid #8a8886; }
+
+    /* Highlight */
+    .highlight-box { border: 2.5px solid #f59e0b; border-radius: 4px; background: rgba(245,158,11,.07); position: relative; }
+    .highlight-label { position: absolute; top: -11px; right: 8px; background: #f59e0b; color: #fff; font-size: 9px; font-weight: 800; padding: 1px 7px; border-radius: 8px; letter-spacing: .4px; text-transform: uppercase; white-space: nowrap; }
+
+    /* Side by side */
+    .two-col { display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap; margin-top: 12px; }
+    .two-col > div { flex: 1; min-width: 220px; }
+
+    /* Phone */
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    /* Troubleshooting table */
+    .table-wrap { overflow-x: auto; margin: 12px 0; border-radius: 7px; border: 1px solid var(--border); }
+    table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+    thead tr { background: var(--navy); }
+    thead th { padding: 9px 13px; text-align: left; font-size: 10.5px; font-weight: 700; color: #fff; }
+    tbody tr:nth-child(even) { background: var(--bg-subtle); }
+    td { padding: 8px 13px; color: #444; border-top: 1px solid var(--border); vertical-align: top; }
+    td strong { color: var(--navy); }
+
+    .badge-orange { background: rgba(234,179,8,.2); color: #92400e; border: 1px solid rgba(234,179,8,.3); display:inline-block; padding:1px 7px; border-radius:8px; font-size:10px; font-weight:700; }
+
+    /* Footer */
+    .page-footer { text-align: center; padding: 24px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); background: #fff; margin-top: 20px; }
+    .page-footer a { color: var(--accent); }
+
+    @media (max-width: 600px) {
+      .page-header { padding: 24px 18px; }
+      .page-body { padding: 20px 14px 40px; }
+      .two-col { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="page-header">
+    <div class="page-header-eyebrow">Employee Guide</div>
+    <h1>Setting Up Unibeam Auth</h1>
+    <p>A quick one-time setup to activate SIM-based authentication on your work account. Takes under 2 minutes — no app to install, no codes to remember.</p>
+    <div class="page-header-meta">
+      <span class="meta-badge">One-time setup</span>
+      <span class="meta-badge">Microsoft Entra</span>
+      <span class="meta-badge">No app required</span>
+    </div>
+  </div>
+
+  <div class="page-body">
+
+    <!-- What is Unibeam Auth -->
+    <div class="card">
+      <div class="card-header">What is Unibeam Auth?</div>
+      <div class="card-body">
+        <p>Unibeam Auth is your organisation's second factor for Microsoft sign-in. Instead of typing a one-time code or approving a push notification, it silently verifies your identity using your SIM card — the secure hardware already inside your phone.</p>
+        <p>After this one-time setup, every sign-in is protected automatically. You don't need to do anything extra.</p>
+        <div class="callout success">
+          <div class="callout-title">What changes for you</div>
+          <p>Nothing at sign-in time. Unibeam runs silently in the background. No codes, no approvals — just sign in as normal.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 1 -->
+    <div class="card">
+      <div class="card-header">Step 1 — Go to My Security Info</div>
+      <div class="card-body">
+        <div class="emp-step">
+          <div class="emp-step-num">1</div>
+          <div class="emp-step-body">
+            <div class="emp-step-title">Open the security info page</div>
+            <div class="emp-step-desc">Open a browser and go to <a href="https://mysignins.microsoft.com/security-info" target="_blank">mysignins.microsoft.com/security-info</a>. Sign in with your work account if prompted.</div>
+            <div class="mockup-wrap">
+              <div class="mockup-bar">
+                <div class="mockup-dots"><span class="mockup-dot-r"></span><span class="mockup-dot-y"></span><span class="mockup-dot-g"></span></div>
+                <div class="mockup-url"><span class="lock">🔒</span> mysignins.microsoft.com/security-info</div>
+              </div>
+              <div class="mockup-body" style="padding:18px 22px;">
+                <div style="background:#0078d4;margin:-18px -22px 16px;padding:10px 20px;color:#fff;font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px;">
+                  <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><rect width="9" height="9" fill="#fff" opacity=".9"/><rect x="11" width="9" height="9" fill="#fff" opacity=".7"/><rect y="11" width="9" height="9" fill="#fff" opacity=".7"/><rect x="11" y="11" width="9" height="9" fill="#fff" opacity=".5"/></svg>
+                  My Account — Security info
+                </div>
+                <div style="font-size:14px;font-weight:600;color:#323130;margin-bottom:4px;">Security info</div>
+                <div style="font-size:12px;color:#605e5c;margin-bottom:14px;">These are the methods you use to sign in or reset your password.</div>
+                <div class="highlight-box" style="display:inline-block;padding:2px;">
+                  <div class="highlight-label">Click here</div>
+                  <button class="entra-btn entra-btn-primary">＋ Add sign-in method</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="card">
+      <div class="card-header">Step 2 — Select Unibeam Auth</div>
+      <div class="card-body">
+        <div class="emp-step">
+          <div class="emp-step-num">2</div>
+          <div class="emp-step-body">
+            <div class="emp-step-title">Choose Unibeam Auth from the dropdown</div>
+            <div class="emp-step-desc">In the <strong>Add a method</strong> panel, select <strong>Unibeam Auth</strong> from the dropdown and click <strong>Add</strong>.</div>
+            <div class="mockup-wrap">
+              <div class="mockup-bar">
+                <div class="mockup-dots"><span class="mockup-dot-r"></span><span class="mockup-dot-y"></span><span class="mockup-dot-g"></span></div>
+                <div class="mockup-url"><span class="lock">🔒</span> mysignins.microsoft.com/security-info</div>
+              </div>
+              <div class="mockup-body" style="padding:18px 22px;max-width:380px;">
+                <div style="font-size:13px;font-weight:600;color:#323130;margin-bottom:12px;">Add a method</div>
+                <div style="font-size:12px;color:#323130;margin-bottom:6px;">Which method would you like to add?</div>
+                <div class="highlight-box" style="margin-bottom:12px;padding:2px;">
+                  <div class="highlight-label">Select this</div>
+                  <select style="width:100%;padding:7px 10px;border:1px solid #8a8886;border-radius:2px;font-size:12px;color:#323130;background:#fff;">
+                    <option>Unibeam Auth</option>
+                    <option>Authenticator app</option>
+                    <option>Phone</option>
+                  </select>
+                </div>
+                <div style="display:flex;gap:8px;">
+                  <button class="entra-btn entra-btn-primary">Add</button>
+                  <button class="entra-btn entra-btn-secondary">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="card">
+      <div class="card-header">Step 3 — Approve the Unibeam Challenge</div>
+      <div class="card-body">
+        <div class="emp-step">
+          <div class="emp-step-num">3</div>
+          <div class="emp-step-body">
+            <div class="emp-step-title">Enter the number shown on screen into your phone</div>
+            <div class="emp-step-desc">Your screen will show a 2-digit number. You will receive a notification on your mobile device asking you to type that number and tap <strong>Send</strong> to confirm your identity.</div>
+
+            <div class="two-col">
+
+              <!-- Browser challenge -->
+              <div>
+                <div style="font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px;">① On your computer screen</div>
+                <div class="mockup-wrap">
+                  <div class="mockup-bar">
+                    <div class="mockup-dots"><span class="mockup-dot-r"></span><span class="mockup-dot-y"></span><span class="mockup-dot-g"></span></div>
+                    <div class="mockup-url"><span class="lock">🔒</span> login.microsoftonline.com</div>
+                  </div>
+                  <div class="mockup-body" style="padding:28px 20px;text-align:center;background:#f7f3ff;">
+                    <div style="font-size:11px;font-weight:700;color:#7c3aed;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;">Authentication Pending</div>
+                    <div style="font-size:12px;color:#4b5563;margin-bottom:16px;line-height:1.5;">To complete the authentication process, you will receive a pop-up request shortly. Your prompt attention is appreciated.</div>
+                    <div style="font-size:12px;color:#374151;margin-bottom:14px;">Please enter the following 2-digit code when prompted:</div>
+                    <div class="highlight-box" style="display:inline-block;padding:4px;">
+                      <div class="highlight-label">Enter this on your phone</div>
+                      <div style="border:2px solid #1a1a1a;border-radius:4px;padding:10px 28px;display:inline-block;">
+                        <span style="font-size:36px;font-weight:800;color:#111;letter-spacing:4px;">37</span>
+                      </div>
+                    </div>
+                    <div style="margin-top:18px;">
+                      <svg width="72" height="72" viewBox="0 0 80 80" fill="none"><rect x="10" y="5" width="60" height="70" rx="8" fill="#e9d5ff" stroke="#c4b5fd" stroke-width="2"/><rect x="18" y="16" width="44" height="30" rx="3" fill="#ddd6fe"/><rect x="26" y="20" width="14" height="10" rx="2" fill="#a78bfa" opacity=".6"/><rect x="42" y="20" width="14" height="10" rx="2" fill="#c4b5fd" opacity=".4"/><circle cx="40" cy="62" r="5" fill="#c4b5fd"/><path d="M30 55 L50 55" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Phone notification -->
+              <div>
+                <div style="font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px;">② On your mobile device</div>
+                <div style="width:338px;height:792px;background:linear-gradient(180deg,#2B7FFF 0%,#9810FA 100%);border-radius:48px;padding:20px;display:flex;flex-direction:column;align-items:center;box-shadow:0 8px 40px rgba(43,127,255,.4);position:relative;margin:0 auto;flex:none;align-self:stretch;flex-grow:0;">
+                  <div style="width:100px;height:18px;background:rgba(0,0,0,.4);border-radius:10px;margin-bottom:18px;"></div>
+                  <div style="color:rgba(255,255,255,.85);font-size:14px;font-weight:600;margin-bottom:14px;align-self:flex-start;padding-left:6px;">9:41</div>
+                  <div style="width:100%;background:rgba(255,255,255,.18);backdrop-filter:blur(10px);border-radius:14px;padding:14px 16px;border:1px solid rgba(255,255,255,.25);">
+                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+                      <div style="width:28px;height:28px;background:#fff;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#2B7FFF;flex-shrink:0;">U</div>
+                      <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.8);text-transform:uppercase;letter-spacing:.6px;">Unibeam Auth</div>
+                      <div style="margin-left:auto;font-size:11px;color:rgba(255,255,255,.55);">now</div>
+                    </div>
+                    <div style="font-size:13px;color:#fff;font-weight:700;line-height:1.4;margin-bottom:4px;">Unibeam Auth</div>
+                    <div style="font-size:12px;color:rgba(255,255,255,.9);font-weight:400;line-height:1.5;margin-bottom:12px;">Please approve login to Microsoft by typing the number you see on screen</div>
+                    <div style="background:rgba(0,0,0,.25);border-radius:8px;padding:10px;margin-bottom:12px;text-align:center;">
+                      <div style="font-size:10px;color:rgba(255,255,255,.7);margin-bottom:6px;">Enter the number shown on screen</div>
+                      <div style="position:relative;">
+                        <div class="highlight-box" style="border:2px solid #f59e0b;border-radius:8px;padding:2px;">
+                          <div class="highlight-label" style="font-size:8px;">Type here using keyboard</div>
+                          <div style="background:rgba(255,255,255,.95);border-radius:6px;padding:8px 12px;display:flex;align-items:center;justify-content:center;gap:4px;">
+                            <span style="font-size:22px;font-weight:800;color:#2B7FFF;letter-spacing:6px;">_ _</span>
+                            <span style="width:2px;height:22px;background:#2B7FFF;border-radius:1px;animation:blink 1s step-end infinite;display:inline-block;"></span>
+                          </div>
+                        </div>
+                      </div>
+                      <div style="margin-top:8px;background:rgba(0,0,0,.3);border-radius:6px;padding:6px 4px;">
+                        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-bottom:3px;">
+                          <div style="background:rgba(255,255,255,.85);border-radius:4px;padding:5px 2px;text-align:center;font-size:12px;font-weight:600;color:#111;">1</div>
+                          <div style="background:rgba(255,255,255,.85);border-radius:4px;padding:5px 2px;text-align:center;font-size:12px;font-weight:600;color:#111;">2</div>
+                          <div style="background:rgba(255,255,255,.85);border-radius:4px;padding:5px 2px;text-align:center;font-size:12px;font-weight:600;color:#111;">3</div>
+                          <div style="background:rgba(255,255,255,.85);border-radius:4px;padding:5px 2px;text-align:center;font-size:12px;font-weight:600;color:#111;">4</div>
+                          <div style="background:rgba(255,255,255,.85);border-radius:4px;padding:5px 2px;text-align:center;font-size:12px;font-weight:600;color:#111;">5</div>
+                          <div style="background:rgba(255,255,255,.85);border-radius:4px;padding:5px 2px;text-align:center;font-size:12px;font-weight:600;color:#111;">6</div>
+                          <div style="background:rgba(255,255,255,.85);border-radius:4px;padding:5px 2px;text-align:center;font-size:12px;font-weight:600;color:#111;">7</div>
+                          <div style="background:rgba(255,255,255,.85);border-radius:4px;padding:5px 2px;text-align:center;font-size:12px;font-weight:600;color:#111;">8</div>
+                          <div style="background:rgba(255,255,255,.85);border-radius:4px;padding:5px 2px;text-align:center;font-size:12px;font-weight:600;color:#111;">9</div>
+                          <div style="background:rgba(255,255,255,.5);border-radius:4px;padding:5px 2px;text-align:center;font-size:10px;color:#fff;"></div>
+                          <div style="background:rgba(255,255,255,.85);border-radius:4px;padding:5px 2px;text-align:center;font-size:12px;font-weight:600;color:#111;">0</div>
+                          <div style="background:rgba(255,255,255,.5);border-radius:4px;padding:5px 2px;text-align:center;font-size:10px;color:#fff;">⌫</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div style="background:#fff;border-radius:8px;padding:10px 0;text-align:center;font-size:13px;font-weight:700;color:#2B7FFF;position:relative;">
+                      Send
+                      <span style="position:absolute;top:-8px;right:-4px;background:#f59e0b;color:#fff;font-size:8px;font-weight:800;padding:1px 5px;border-radius:6px;">tap here</span>
+                    </div>
+                  </div>
+                  <div style="position:absolute;bottom:14px;width:80px;height:5px;background:rgba(255,255,255,.5);border-radius:3px;"></div>
+                </div>
+              </div>
+
+            </div><!-- end two-col -->
+
+            <!-- Registration complete -->
+            <div class="mockup-wrap" style="margin-top:18px;">
+              <div class="mockup-bar">
+                <div class="mockup-dots"><span class="mockup-dot-r"></span><span class="mockup-dot-y"></span><span class="mockup-dot-g"></span></div>
+                <div class="mockup-url"><span class="lock">🔒</span> mysignins.microsoft.com/security-info</div>
+              </div>
+              <div class="mockup-body" style="padding:24px;text-align:center;">
+                <div style="font-size:36px;margin-bottom:10px;">✅</div>
+                <div style="font-size:14px;font-weight:700;color:#107c10;margin-bottom:6px;">Unibeam Auth registered</div>
+                <div style="font-size:12px;color:#605e5c;margin-bottom:14px;">Your SIM and device identity have been verified. Unibeam Auth is now active on your account.</div>
+                <div class="highlight-box" style="display:inline-block;padding:2px;">
+                  <div class="highlight-label">You're done!</div>
+                  <button class="entra-btn entra-btn-primary">Done</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="callout success" style="margin-top:14px;">
+          <div class="callout-title">You're all set</div>
+          <p>Unibeam Auth is now active. Every future sign-in is protected automatically — no codes to enter, no approvals needed.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ / Troubleshooting -->
+    <div class="card">
+      <div class="card-header">Frequently Asked Questions</div>
+      <div class="card-body">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Question</th><th>Answer</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>I don't see Unibeam Auth in the dropdown</strong></td>
+                <td>Your IT admin may not have enabled it yet, or your account may not be in the target group. Contact your IT helpdesk.</td>
+              </tr>
+              <tr>
+                <td><strong>Registration failed or timed out</strong></td>
+                <td>Make sure your phone has an active SIM with carrier signal (not Wi-Fi only). Try again with mobile data on.</td>
+              </tr>
+              <tr>
+                <td><strong>I didn't receive a notification on my phone</strong></td>
+                <td>Check that your phone has signal and notifications are enabled for Unibeam Auth. Try the registration again.</td>
+              </tr>
+              <tr>
+                <td><strong>Do I need to do this again if I get a new phone?</strong></td>
+                <td>Yes — a new device requires a new registration. Follow these same steps on your new phone.</td>
+              </tr>
+              <tr>
+                <td><strong>Unibeam Auth isn't showing at sign-in after I registered</strong></td>
+                <td>Wait a few minutes for changes to propagate, then try signing in again.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="page-footer">
+    Need help? Contact your IT helpdesk or email <a href="mailto:support@unibeam.com">support@unibeam.com</a>
+  </div>
+
+</body>
+</html>

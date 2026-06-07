@@ -412,8 +412,8 @@
     <a href="#sec6s5"  class="nav-item sub">   <span class="nav-num">6.5</span>Configure Unibeam</a>
     <a href="#sec6s6"  class="nav-item sub">   <span class="nav-num">6.6</span>Enable &amp; Target</a>
     <a href="#sec6s7"  class="nav-item sub">   <span class="nav-num">6.7</span>IT Admin Setup</a>
-    <a href="#sec6emp" class="nav-item sub">   <span class="nav-num">6.8</span>Employee Setup</a>
     <a href="#sec6ts"  class="nav-item sub">   <span class="nav-num">TS</span>Troubleshooting</a>
+    <a href="#sec6emp" class="nav-item sub">   <span class="nav-num">6.8</span>Employee Setup</a>
 
     <div class="sidebar-footer">
       <a href="mailto:support@unibeam.com">support@unibeam.com</a>
@@ -1037,6 +1037,49 @@
         </div>
       </div>
 
+      <!-- ── Troubleshooting (IT Admin) ───────────────────────────────────── -->
+      <div class="subsection" id="sec6ts">
+        <div class="subsection-header"><span class="sec-label">TS</span>&nbsp; Troubleshooting — IT Admin</div>
+        <div class="section-body">
+          <p>If you encounter issues during setup or rollout, refer to the checklist below:</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Issue</th><th>Resolution</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><strong>Consent page shows an error</strong></td>
+                  <td>Ensure you are signed in as a Global Administrator or Authentication Policy Administrator.</td>
+                </tr>
+                <tr>
+                  <td><strong>External MFA option not visible in Entra</strong></td>
+                  <td>The feature may need to be enabled at the tenant level. Contact your Unibeam representative.</td>
+                </tr>
+                <tr>
+                  <td><strong>Authentication fails after configuration</strong></td>
+                  <td>Verify the Discovery Endpoint and App ID are entered exactly as provided by Unibeam.</td>
+                </tr>
+                <tr>
+                  <td><strong>Unibeam Auth not visible in employee security-info</strong></td>
+                  <td>Confirm the method is enabled in Entra and the employee's account is in a targeted group.</td>
+                </tr>
+                <tr>
+                  <td><strong>Employee registration fails or times out</strong></td>
+                  <td>Ensure the device has an active SIM with carrier signal. Wi-Fi-only devices cannot complete SIM authentication.</td>
+                </tr>
+                <tr>
+                  <td><strong>Unibeam Auth not available at sign-in after registration</strong></td>
+                  <td>Wait a few minutes for Entra to propagate group membership, then try again.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout">
+            <div class="callout-title">Need more help?</div>
+            <p>Contact the Unibeam support team: <a href="mailto:support@unibeam.com">support@unibeam.com</a></p>
+          </div>
+        </div>
+      </div>
+
       <!-- ── 6.8 Employee Setup ──────────────────────────────────────────── -->
       <div class="subsection" id="sec6emp">
         <div class="subsection-header"><span class="sec-label">6.8</span>&nbsp; Employee Setup — Registering Unibeam Auth</div>
@@ -1229,54 +1272,6 @@
         </div>
       </div>
 
-      <!-- ── Troubleshooting ────────────────────────────────────────────── -->
-      <div class="subsection" id="sec6ts">
-        <div class="subsection-header"><span class="sec-label">TS</span>&nbsp; Troubleshooting</div>
-        <div class="section-body">
-          <p>If you encounter issues during setup or rollout, refer to the checklist below:</p>
-          <div class="table-wrap">
-            <table>
-              <thead><tr><th>Who</th><th>Issue</th><th>Resolution</th></tr></thead>
-              <tbody>
-                <tr>
-                  <td><span class="badge badge-blue">IT Admin</span></td>
-                  <td><strong>Consent page shows an error</strong></td>
-                  <td>Ensure you are signed in as a Global Administrator or Authentication Policy Administrator.</td>
-                </tr>
-                <tr>
-                  <td><span class="badge badge-blue">IT Admin</span></td>
-                  <td><strong>External MFA option not visible in Entra</strong></td>
-                  <td>The feature may need to be enabled at the tenant level. Contact your Unibeam representative.</td>
-                </tr>
-                <tr>
-                  <td><span class="badge badge-blue">IT Admin</span></td>
-                  <td><strong>Authentication fails after configuration</strong></td>
-                  <td>Verify the Discovery Endpoint and App ID are entered exactly as provided by Unibeam.</td>
-                </tr>
-                <tr>
-                  <td><span class="badge badge-orange">Employee</span></td>
-                  <td><strong>Unibeam Auth not visible in security-info</strong></td>
-                  <td>Confirm the method is enabled in Entra and the employee's account is in a targeted group.</td>
-                </tr>
-                <tr>
-                  <td><span class="badge badge-orange">Employee</span></td>
-                  <td><strong>Registration fails or times out</strong></td>
-                  <td>Ensure the device has an active SIM with carrier signal. Wi-Fi-only devices cannot complete SIM authentication.</td>
-                </tr>
-                <tr>
-                  <td><span class="badge badge-orange">Employee</span></td>
-                  <td><strong>Unibeam Auth not available at sign-in after registration</strong></td>
-                  <td>Wait a few minutes for Entra to propagate group membership, then try again.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="callout">
-            <div class="callout-title">Need more help?</div>
-            <p>Contact the Unibeam support team: <a href="mailto:support@unibeam.com">support@unibeam.com</a></p>
-          </div>
-        </div>
-      </div>
 
     </div>
   </div>
