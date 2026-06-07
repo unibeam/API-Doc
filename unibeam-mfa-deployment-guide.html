@@ -297,7 +297,7 @@
     <div class="sidebar-label">Contents</div>
 
     <a href="#sec1"   class="nav-item active"><span class="nav-num">1</span>Unibeam External MFA</a>
-    <a href="#sec1a"  class="nav-item sub">   <span class="nav-num">1.a</span>MFA Today</a>
+    <a href="#sec1a"  class="nav-item sub">   <span class="nav-num">1.a</span>MFA Reality</a>
     <a href="#sec1b"  class="nav-item sub">   <span class="nav-num">1.b</span>Why Unibeam is Different</a>
     <a href="#sec1b1" class="nav-item subsub"><span class="nav-num">1.b.1</span>App + Hardware Security</a>
     <a href="#sec2"   class="nav-item">       <span class="nav-num">2</span>How Authentication Works</a>
@@ -334,106 +334,65 @@
       <div class="section" id="sec1">
         <div class="section-header"><div class="sec-num">1</div>Unibeam External MFA</div>
         <div class="section-body">
-          <p>Unibeam Auth integrates with Microsoft Entra ID as a certified <strong>External Authentication Method (EAM)</strong> over OIDC. It replaces the second factor in your existing Conditional Access policies with SIM-based authentication — leveraging unique identifiers bound to the subscriber's SIM hardware rather than a code, push notification, or application secret.</p>
+          <p>Unibeam Auth integrates with Microsoft Entra ID as a certified <strong>External Authentication Method (EAM)</strong> via OIDC, replacing traditional MFA factors in Conditional Access policies with SIM-based authentication tied to the subscriber's mobile identity.</p>
 
           <div class="callout">
-            <div class="callout-title">What "External Authentication Method" means</div>
-            <p>Microsoft Entra EAM is a standards-based extension point that allows a certified third-party identity provider to serve as the MFA step in an Entra sign-in flow. Unibeam plugs into this slot — Entra handles the primary credential, Unibeam handles the second factor, and the result is a signed OIDC token returned to Entra.</p>
+            <div class="callout-title">What this means</div>
+            <p>Microsoft Entra EAM allows a trusted third-party provider to perform the MFA step during authentication. In this model, Entra validates the primary credential, Unibeam verifies the user through their SIM/device identity, and the result is returned to Entra through a secure OIDC flow.</p>
           </div>
 
-          <p>The sections below explain what the current MFA landscape looks like, why existing methods leave security gaps, and why Unibeam's architecture closes those gaps at the hardware level.</p>
+          <h2>Positioning</h2>
+          <ul>
+            <li>Removes reliance on OTPs, push notifications, and app-based secrets</li>
+            <li>Uses the SIM card — the most secure element — as the source of identity and the anchor for authentication</li>
+            <li>Reduces exposure to phishing, fatigue attacks, and credential replay</li>
+          </ul>
+
+          <p>Unibeam Auth validates subscriber identity through an embedded SIM application that generates unique subscriber identifiers — representing the SIM ID, device ID, and last IMEI change. These identifiers are assessed within your organization's risk and assurance framework to reduce risk and strengthen security.</p>
         </div>
       </div>
 
-      <!-- ── 1.a MFA TODAY ─────────────────────────────────────────────── -->
+      <!-- ── 1.a MFA REALITY ──────────────────────────────────────────── -->
       <div class="subsection" id="sec1a">
-        <div class="subsection-header"><span class="sec-label">1.a</span>&nbsp; MFA Today — TOTP, OTP &amp; Microsoft Authenticator</div>
+        <div class="subsection-header"><span class="sec-label">1.a</span>&nbsp; MFA Reality</div>
         <div class="section-body">
-          <p>The three dominant MFA methods in enterprise Microsoft environments each address account takeover in theory — but each has a structural weakness that keeps them effectively within the "something you know" threat category, despite being labelled as a second factor.</p>
+          <p>Most enterprise MFA methods (TOTP, SMS/WhatsApp OTP, push apps) reduce to <strong>codes or software secrets</strong>.<br>
+          If it's a string, it can be <strong>captured, replayed, intercepted, or moved</strong> — keeping them effectively in the <em>"something you know"</em> risk category.</p>
 
-          <div class="compare-grid">
-
-            <div class="compare-card">
-              <div class="compare-card-header totp">TOTP</div>
-              <div class="compare-card-body">
-                <p>Time-based one-time passwords. A shared seed generates a 6-digit code every 30 seconds.</p>
-                <div class="ci"><span class="dot dot-red"></span><div>Seed is a string — exportable, backable, phishable</div></div>
-                <div class="ci"><span class="dot dot-red"></span><div>Codes captured in real time by AiTM proxy</div></div>
-                <div class="ci"><span class="dot dot-red"></span><div>30-second replay window; commodity tooling available</div></div>
-                <div class="ci"><span class="dot dot-yellow"></span><div>Does not require physical device — only the seed</div></div>
-              </div>
-            </div>
-
-            <div class="compare-card">
-              <div class="compare-card-header otp">SMS / WhatsApp OTP</div>
-              <div class="compare-card-body">
-                <p>One-time codes delivered over the carrier network to a phone number.</p>
-                <div class="ci"><span class="dot dot-red"></span><div>SS7 vulnerabilities allow interception without device access</div></div>
-                <div class="ci"><span class="dot dot-red"></span><div>SIM swap ports the number to an attacker SIM via carrier support</div></div>
-                <div class="ci"><span class="dot dot-red"></span><div>WhatsApp OTP shares the same MSISDN — SIM swap compromises both channels</div></div>
-                <div class="ci"><span class="dot dot-yellow"></span><div>Relies on number as identity, not hardware</div></div>
-              </div>
-            </div>
-
-            <div class="compare-card">
-              <div class="compare-card-header msauth">Microsoft Authenticator</div>
-              <div class="compare-card-body">
-                <p>Push notifications or number-matching via Microsoft's authenticator app.</p>
-                <div class="ci"><span class="dot dot-blue"></span><div>Number matching reduces accidental approvals (MFA fatigue)</div></div>
-                <div class="ci"><span class="dot dot-red"></span><div>App secret extractable from device backup or rooted device</div></div>
-                <div class="ci"><span class="dot dot-red"></span><div>Push fatigue / social engineering remains viable at scale</div></div>
-                <div class="ci"><span class="dot dot-yellow"></span><div>Security depends on OS-level device integrity — no dedicated hardware</div></div>
-              </div>
-            </div>
-
-          </div>
-
-          <h2>Where each method actually sits in the security model</h2>
-          <p>The operative security property of "something you have" is that the credential <em>cannot leave the hardware</em>. TOTP, SMS OTP, and push-based apps all fail this test:</p>
-
-          <div class="verdict-row"><span class="vr-label">Password</span><span class="vr-factor vr-know">Know</span><span>Phishable, leakable, guessable</span></div>
-          <div class="verdict-row"><span class="vr-label">TOTP (authenticator app)</span><span class="vr-factor vr-know">Acts like Know</span><span>Seed is exportable; code is phishable via AiTM</span></div>
-          <div class="verdict-row"><span class="vr-label">SMS / WhatsApp OTP</span><span class="vr-factor vr-know">Acts like Know</span><span>Number is portable; code is interceptable via SS7</span></div>
-          <div class="verdict-row"><span class="vr-label">Microsoft Authenticator (push)</span><span class="vr-factor vr-partial">Partially Have</span><span>App secret is software-bound; device backup can expose it</span></div>
-          <div class="verdict-row"><span class="vr-label">FIDO2 hardware token</span><span class="vr-factor vr-have-true">True Have</span><span>Credentials are non-exportable; cannot be intercepted remotely</span></div>
-          <div class="verdict-row"><span class="vr-label">Unibeam SIM Auth</span><span class="vr-factor vr-have-true">True Have</span><span>Credentials secured on-SIM; number portability does not transfer them</span></div>
+          <h2>Common weaknesses</h2>
+          <ul>
+            <li><strong>TOTP:</strong> shared seed can be exported or phished; codes replayable</li>
+            <li><strong>SMS/WhatsApp OTP:</strong> number can be intercepted or SIM-swapped</li>
+            <li><strong>Push apps:</strong> vulnerable to fatigue attacks and device compromise</li>
+          </ul>
 
           <div class="callout">
-            <div class="callout-title">The design criterion</div>
-            <p>A genuine second factor must not be reducible to a string the attacker can obtain remotely. If the secret can be intercepted, ported, or extracted from a backup, the factor provides one layer of security — not two. TOTP, SMS OTP, and app-based authenticators all reduce to strings. FIDO2 and SIM authentication do not.</p>
+            <div class="callout-title">Bottom line</div>
+            <p>They rely on data that can leave the device — not true possession.</p>
           </div>
+
+          <h2>What "True Possession" Looks Like</h2>
+          <p>A real second factor means the credential <strong>cannot leave the hardware</strong>.</p>
+          <ul>
+            <li>Software MFA &rarr; transferable &rarr; higher risk</li>
+            <li>Hardware-bound MFA &rarr; non-transferable &rarr; stronger assurance</li>
+          </ul>
+
+          <h2>Unibeam Positioning — In One Line</h2>
+          <p>Unibeam replaces codes and app approvals with <strong>SIM-bound authentication tied to the mobile network</strong>, eliminating interceptable user input.</p>
         </div>
       </div>
 
       <!-- ── 1.b WHY UNIBEAM IS DIFFERENT ─────────────────────────────── -->
       <div class="subsection" id="sec1b">
-        <div class="subsection-header"><span class="sec-label">1.b</span>&nbsp; Why Unibeam is Different from "Old-Generation Authenticators"</div>
+        <div class="subsection-header"><span class="sec-label">1.b</span>&nbsp; Why Unibeam Is Different</div>
         <div class="section-body">
-          <p>Legacy authenticators — TOTP apps, SMS OTP, and push-based solutions — share a common architecture: they authenticate a <em>phone number</em> or an <em>application secret stored in software</em>. Unibeam takes a fundamentally different approach: authentication is bound to unique identifiers generated from the SIM hardware itself, verified by the mobile carrier's network in real time.</p>
-
-          <h2>The core architectural difference</h2>
-          <div class="why">Why it matters</div>
-          <p>Old-generation authenticators generate or receive a code and ask the user to type or approve it. That code is the authentication proof — and because it is a string, it can be captured. Unibeam generates no code. The proof of identity is a unique identifier challenge between the Unibeam Applet on the SIM and the carrier's Authentication Centre (AuC), taking place entirely within the carrier network. The user sees nothing; there is nothing for an attacker to intercept.</p>
-
-          <div class="table-wrap">
-            <table>
-              <thead><tr><th>Property</th><th>TOTP / OTP / Push App</th><th>Unibeam SIM Auth</th></tr></thead>
-              <tbody>
-                <tr><td><strong>What is authenticated</strong></td><td>A code or software app secret</td><td>The physical SIM hardware</td></tr>
-                <tr><td><strong>User interaction</strong></td><td>Type code or approve push</td><td>None — silent background challenge</td></tr>
-                <tr><td><strong>Phishing surface</strong></td><td>Code interceptable by AiTM proxy</td><td>No code exists to intercept</td></tr>
-                <tr><td><strong>SIM swap resilience</strong></td><td>Number portability transfers OTP delivery</td><td>Credentials stay on original SIM; attacker SIM fails challenge</td></tr>
-                <tr><td><strong>Credential storage</strong></td><td>Software (app, device backup, cloud sync)</td><td>Dedicated hardware secure element (SIM / eSIM)</td></tr>
-                <tr><td><strong>Remote extraction</strong></td><td>Possible via backup, export, or rooted device</td><td>Not possible — SIM hardware boundary</td></tr>
-                <tr><td><strong>Provisioning</strong></td><td>App install + QR scan per user</td><td>Applet deployed OTA by carrier; single user registration</td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="callout">
-            <div class="callout-title">Why "hardware-backed app" is still a software solution</div>
-            <p>Some solutions market themselves as "hardware-backed" because they use a phone's secure enclave to store an app secret. A phone's secure enclave protects against local extraction — it does not protect against the application being enrolled on a backup device, or the phone number being ported. Unibeam's security boundary is the SIM hardware and the carrier network, neither of which is reachable from the public internet.</p>
-          </div>
+          <ul>
+            <li><strong>No codes, no approvals, no user action</strong></li>
+            <li><strong>Authentication bound to SIM identity, not phone number or app</strong></li>
+            <li><strong>Unaffected by phishing, OTP interception, or push fatigue</strong></li>
+            <li><strong>SIM swaps do not transfer authentication capability</strong></li>
+          </ul>
         </div>
       </div>
 
@@ -476,44 +435,11 @@
                 <div class="hw-row"><span class="dot dot-green"></span><div>Subscriber credentials secured within SIM hardware; SIM swap does not transfer them</div></div>
                 <div class="hw-row"><span class="dot dot-green"></span><div>Challenge-response occurs on the carrier's internal AuC channel — unreachable from the public internet</div></div>
                 <div class="hw-row"><span class="dot dot-green"></span><div>eSIM: applet deployed OTA — no physical distribution, no gap period</div></div>
-                <div class="hw-row"><span class="dot dot-green"></span><div>Silent authentication — no user interaction, no code, no phishing surface</div></div>
-                <div class="hw-row"><span class="dot dot-green"></span><div>Carrier-layer signals (SIMId, DeviceId, ChangeTimestamp) surface identity anomalies to Entra</div></div>
               </div>
             </div>
 
           </div>
 
-          <h2>SIM and eSIM as a secure element</h2>
-          <div class="why">Why it matters</div>
-          <p>A SIM card is a Java Card-compliant smart card running inside a certified tamper-resistant hardware module. It meets the same hardware security standards (ISO/IEC 7816, GlobalPlatform) as dedicated external tokens. The Unibeam Applet is installed inside this environment — it generates and stores unique identifiers in its own isolated storage, and cannot be read by the host OS, the application layer, or any external tool. An attacker with full control of the Android or iOS device cannot extract credentials from the SIM.</p>
-
-          <p>eSIM (eUICC) brings the same hardware security model with the addition of remote provisioning. The applet is deployed and updated over-the-air through the carrier's SM-DP+ server — eliminating the physical distribution requirement that makes hardware tokens operationally difficult at scale. For enterprises with large, distributed, or remote workforces, eSIM means coverage can be provisioned the same day it is needed, with no gap period where a weaker fallback method is in use.</p>
-
-          <h2>Unibeam SIM Auth vs. Yubico YubiKey</h2>
-          <div class="why">Comparison</div>
-          <p>Both a YubiKey and Unibeam SIM Auth are hardware-backed and phishing-resistant. The differences are operational and architectural:</p>
-
-          <div class="table-wrap">
-            <table>
-              <thead><tr><th>Dimension</th><th>Yubico YubiKey (FIDO2)</th><th>Unibeam SIM / eSIM</th></tr></thead>
-              <tbody>
-                <tr><td><strong>Hardware</strong></td><td>Dedicated USB/NFC token (external, separate device)</td><td>SIM / eSIM already inside the user's phone</td></tr>
-                <tr><td><strong>Distribution</strong></td><td>Physical procurement + shipping per user</td><td>OTA provisioning via carrier — no physical shipping</td></tr>
-                <tr><td><strong>Loss / replacement</strong></td><td>New token must be procured and enrolled</td><td>eSIM re-provisioned remotely in minutes</td></tr>
-                <tr><td><strong>Coverage gap risk</strong></td><td>High — lost token forces a weaker fallback</td><td>Low — eSIM replaced remotely; no gap period</td></tr>
-                <tr><td><strong>User interaction</strong></td><td>Physical tap or USB plug-in required per login</td><td>Silent — no user action at authentication time</td></tr>
-                <tr><td><strong>Phishing resistance</strong></td><td><span class="badge badge-green">Yes</span> — origin-bound credential</td><td><span class="badge badge-green">Yes</span> — no code exists to phish</td></tr>
-                <tr><td><strong>Remote credential extraction</strong></td><td><span class="badge badge-green">Not possible</span></td><td><span class="badge badge-green">Not possible</span></td></tr>
-                <tr><td><strong>SIM swap detection</strong></td><td><span class="badge badge-red">Not possible</span> — no carrier integration</td><td><span class="badge badge-green">Yes</span> — new SIMId triggers alert; carrier challenge fails on attacker SIM</td></tr>
-                <tr><td><strong>Carrier-layer identity signals</strong></td><td>None</td><td>SIMId, DeviceId, ChangeTimestamp written to Entra on every auth event</td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="callout">
-            <div class="callout-title">The combined advantage</div>
-            <p>Unibeam delivers the hardware-security guarantees of a FIDO2 token — non-exportable credentials, no phishable code — while removing the operational constraints that prevent universal deployment. The application layer (the Unibeam Applet) also adds carrier-network signals that no external hardware token can provide, giving your detection stack visibility into SIM and device changes that would otherwise be invisible to Entra.</p>
-          </div>
         </div>
       </div>
 
@@ -560,7 +486,7 @@
 
           <h2><code>SIMId</code> — SIM hardware identity</h2>
           <div class="why">Why it matters</div>
-          <p>Unibeam generates a unique identifier representing the SIM hardware that completed the carrier challenge. It is not derived from the ICCID or any externally readable SIM property. It remains constant as long as the same SIM is in use. When <code>SIMId</code> changes between two authentications for the same user, the SIM hardware itself changed — either an expected swap or an unexpected one that warrants investigation.</p>
+          <p>Unibeam generates a unique, persistent identifier that represents the specific SIM hardware used to complete the carrier authentication challenge. This identifier is internally derived and not based on external SIM attributes such as ICCID or any other readable property.</p>
 
           <h2><code>DeviceId</code> — Device hardware identity</h2>
           <div class="why">Why it matters</div>
