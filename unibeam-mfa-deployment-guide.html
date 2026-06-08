@@ -444,11 +444,11 @@
       <div class="section" id="sec1">
         <div class="section-header"><div class="sec-num">1</div>Unibeam External MFA</div>
         <div class="section-body">
-          <p>Unibeam Auth integrates with Microsoft Entra ID as a certified <strong>External Authentication Method (EAM)</strong> via OIDC, replacing traditional MFA factors in Conditional Access policies with SIM-based authentication tied to the subscriber's mobile identity.</p>
+          <p>Unibeam Auth integrates with Microsoft Entra ID as a certified <strong>External Authentication Method (EAM)</strong>, replacing traditional MFA factors in Conditional Access policies with SIM-based authentication tied to the subscriber's mobile identity.</p>
 
           <div class="callout">
             <div class="callout-title">What this means</div>
-            <p>Microsoft Entra EAM allows a trusted third-party provider to perform the MFA step during authentication. In this model, Entra validates the primary credential, Unibeam verifies the user through their SIM/device identity, and the result is returned to Entra through a secure OIDC flow.</p>
+            <p>Microsoft Entra EAM allows a trusted third-party provider to perform the MFA step during authentication. In this model, Entra validates the primary credential, Unibeam verifies the user through their SIM and device identity, and the verified result is securely returned to Entra to complete sign-in.</p>
           </div>
 
           <h2>Positioning</h2>
@@ -508,9 +508,9 @@
 
       <!-- ── 1.b.1 APP + HARDWARE SECURITY ────────────────────────────── -->
       <div class="subsection" id="sec1b1">
-        <div class="subsubsection-header"><span class="sec-label">1.b.1</span>&nbsp; Unibeam as an Application + Hardware Solution — SIM &amp; eSIM Security vs. Apps and External Hardware Tokens (Yubico)</div>
+        <div class="subsubsection-header"><span class="sec-label">1.b.1</span>&nbsp; Unibeam as an Application + Hardware Solution — SIM &amp; eSIM Security vs. Apps and External Hardware Tokens</div>
         <div class="section-body">
-          <p>Unibeam combines two layers that no pure-software or pure-hardware solution provides together: an application layer (the Unibeam Applet) running inside certified, tamper-resistant hardware (the SIM or eSIM). Understanding how this compares to software authenticators and to dedicated external hardware tokens like Yubico YubiKeys clarifies where each approach's security boundary actually sits.</p>
+          <p>Unibeam combines two layers that no pure-software or pure-hardware solution provides together: an application layer (the Unibeam Applet) running inside certified, tamper-resistant hardware (the SIM or eSIM). Understanding how this compares to software authenticators and to dedicated external hardware tokens clarifies where each approach's security boundary actually sits.</p>
 
           <h2>The three security tiers</h2>
           <div class="hw-grid">
@@ -527,21 +527,21 @@
             </div>
 
             <div class="hw-card">
-              <div class="hw-card-header yubikey">External Hardware Token<br><small style="font-weight:400">FIDO2 · YubiKey</small></div>
+              <div class="hw-card-header yubikey">External Hardware Token<br><small style="font-weight:400">USB / NFC token</small></div>
               <div class="hw-card-body">
                 <div class="hw-row"><span class="dot dot-green"></span><div>Private key generated and stored in dedicated secure element — non-exportable by design</div></div>
                 <div class="hw-row"><span class="dot dot-green"></span><div>Phishing-resistant: credential is origin-bound; cannot be replayed cross-site</div></div>
                 <div class="hw-row"><span class="dot dot-green"></span><div>No shared secret between server and client — challenge-response only</div></div>
                 <div class="hw-row"><span class="dot dot-red"></span><div>Requires physical procurement, shipping, and distribution to every user</div></div>
                 <div class="hw-row"><span class="dot dot-red"></span><div>Loss or damage requires re-provisioning; gap period forces a weaker fallback</div></div>
-                <div class="hw-row"><span class="dot dot-red"></span><div>No network signal — cannot detect SIM swap, device change, or MSISDN anomalies</div></div>
+                <div class="hw-row"><span class="dot dot-red"></span><div>No network signal — cannot detect SIM swap or device change</div></div>
               </div>
             </div>
 
             <div class="hw-card">
               <div class="hw-card-header sim">Unibeam SIM / eSIM Auth<br><small style="font-weight:400">Application + Hardware</small></div>
               <div class="hw-card-body">
-                <div class="hw-row"><span class="dot dot-green"></span><div>Unibeam Applet runs inside the SIM's Java Card secure execution environment — hardware-isolated</div></div>
+                <div class="hw-row"><span class="dot dot-green"></span><div>Unibeam Applet runs inside the SIM's secure execution environment — hardware-isolated</div></div>
                 <div class="hw-row"><span class="dot dot-green"></span><div>Subscriber credentials secured within SIM hardware; SIM swap does not transfer them</div></div>
                 <div class="hw-row"><span class="dot dot-green"></span><div>Challenge-response occurs on an internal channel — unreachable from the public internet</div></div>
                 <div class="hw-row"><span class="dot dot-green"></span><div>eSIM: applet deployed OTA — no physical distribution, no gap period</div></div>
@@ -559,30 +559,30 @@
       <div class="section" id="sec2">
         <div class="section-header"><div class="sec-num">2</div>How Authentication Works</div>
         <div class="section-body">
-          <p>Unibeam integrates with Microsoft Entra ID as a certified External Authentication Method over OIDC. The following describes what actually happens on the network during an MFA event.</p>
+          <p>Unibeam integrates with Microsoft Entra ID as a certified External Authentication Method. The following describes what happens during an MFA event.</p>
 
-          <h2>Protocol flow</h2>
+          <h2>Authentication flow</h2>
           <div class="table-wrap">
             <table>
               <thead><tr><th>#</th><th>Actor</th><th>What happens</th></tr></thead>
               <tbody>
                 <tr><td>1</td><td>User</td><td>Submits primary credential (password) to Entra.</td></tr>
-                <tr><td>2</td><td>Entra</td><td>Validates password, delegates MFA to the registered External Authentication Method (Unibeam) via OIDC redirect.</td></tr>
-                <tr><td>3</td><td>Unibeam</td><td>Reads the user's <code>mobilePhone</code> attribute from Entra. Initiates a silent SIM authentication challenge directly with the mobile operator's network via the SIM Application Toolkit (SIM AT) channel.</td></tr>
+                <tr><td>2</td><td>Entra</td><td>Validates password and delegates the second factor to Unibeam.</td></tr>
+                <tr><td>3</td><td>Unibeam</td><td>Identifies the user's registered mobile number and initiates a silent SIM authentication challenge.</td></tr>
                 <tr><td>4</td><td>SIM</td><td>The Unibeam Applet on the SIM performs a challenge-response with the employee to grant a validated authentication of the employee. No user interaction. No code. No push notification.</td></tr>
-                <tr><td>5</td><td>Unibeam</td><td>Receives confirmation from the Applet. Issues a signed OIDC <code>id_token</code> to Entra with claims including <code>SIMId</code>, <code>DeviceId</code>, and <code>ChangeTimestamp</code>.</td></tr>
-                <tr><td>6</td><td>Entra</td><td>Validates the token signature against Unibeam's JWKS endpoint, grants the session.</td></tr>
+                <tr><td>5</td><td>Unibeam</td><td>Receives confirmation from the Applet and issues a signed identity confirmation to Entra including the <code>SIMId</code>, <code>DeviceId</code>, and <code>ChangeTimestamp</code>.</td></tr>
+                <tr><td>6</td><td>Entra</td><td>Verifies the confirmation against Unibeam's service and grants the session.</td></tr>
               </tbody>
             </table>
           </div>
 
           <h2>Why there is nothing to intercept</h2>
           <div class="why">Reason</div>
-          <p>The challenge-response in step 4 occurs between the Unibeam Applet on the SIM and the employee's device. This channel is not accessible from the public internet. There is no code generated that the user sees, types, or transmits — so there is nothing for a proxy or attacker to capture. The subscriber's credentials never leave the SIM.</p>
+          <p>The challenge in step 4 occurs between the Unibeam Applet on the SIM and the employee's device over a channel not accessible from the public internet. There is no code generated that the user sees, types, or transmits — so there is nothing for an attacker to capture. The subscriber's credentials never leave the SIM.</p>
 
           <h2>SIM hardware vs. phone number</h2>
           <div class="why">Reason</div>
-          <p>Authentication is bound to the credentials secured within the physical SIM hardware — not to the phone number (MSISDN). A SIM swap assigns a number to a different SIM; because the credentials live on the original SIM hardware, a swapped number does not inherit the authentication capability. The attacker's SIM will fail the authentication challenge.</p>
+          <p>Authentication is bound to the credentials secured within the physical SIM hardware — not to the phone number. A SIM swap assigns a number to a different SIM; because the credentials live on the original SIM hardware, a swapped number does not inherit the authentication capability. The attacker's SIM will fail the authentication challenge.</p>
         </div>
       </div>
 
@@ -592,7 +592,7 @@
       <div class="section" id="sec3">
         <div class="section-header"><div class="sec-num">3</div>Identity Signals</div>
         <div class="section-body">
-          <p>Each successful authentication event produces three claims in the OIDC token, stored as Entra Custom Security Attributes. These are not metadata — they are signals your detection and response stack can act on.</p>
+          <p>Each successful authentication event produces three unique identifiers, stored against the user's account in Entra. These are not metadata — they are signals your detection and response stack can act on.</p>
 
           <h2><code>SIMId</code> — SIM hardware identity</h2>
           <div class="why">Why it matters</div>
@@ -650,13 +650,13 @@
 
           <h2>What you are trusting</h2>
           <div class="why">Reason</div>
-          <p>When Entra validates Unibeam's <code>id_token</code>, it trusts Unibeam's OIDC endpoint and signing keys. The challenge itself is handled entirely by the Unibeam Applet on the SIM, which owns the identifier-based challenge end-to-end.</p>
+          <p>When Entra receives Unibeam's authentication response, it verifies it against Unibeam's service. The challenge itself is handled entirely by the Unibeam Applet on the SIM, which owns the identifier-based challenge end-to-end.</p>
 
           <h2>What Unibeam can read from your tenant</h2>
           <div class="table-wrap">
             <table class="kv-table">
               <tbody>
-                <tr><td>Read</td><td>User's <code>mobilePhone</code> attribute — to route the SIM challenge</td></tr>
+                <tr><td>Read</td><td>User's registered mobile number — to route the SIM challenge</td></tr>
                 <tr><td>Write</td><td><code>SIMId</code>, <code>DeviceId</code>, <code>ChangeTimestamp</code> as Custom Security Attributes on the user object</td></tr>
                 <tr><td>No access</td><td>Passwords, group membership, email, calendar, files, or any other directory data</td></tr>
               </tbody>
@@ -664,9 +664,9 @@
           </div>
           <p>Permissions are granted once via admin consent and are scoped to the <code>UnibeamAuth</code> attribute set. The service principal cannot read or write outside that scope.</p>
 
-          <h2>Token validation</h2>
+          <h2>Response verification</h2>
           <div class="why">Reason</div>
-          <p>Entra validates the <code>id_token</code> signature against Unibeam's published signing keys via the OIDC discovery endpoint. Tokens issued for a different audience are rejected. A forged token without a valid signature from Unibeam's private key will not pass validation.</p>
+          <p>Entra verifies every authentication response from Unibeam before granting a session. Responses that were not issued by Unibeam for the specific sign-in request will be rejected.</p>
 
           <div class="callout warn">
             <div class="callout-title">Dependency to understand</div>
@@ -712,7 +712,7 @@
           <div class="table-wrap">
             <table class="kv-table">
               <tbody>
-                <tr><td>Discovery Endpoint</td><td><code>https://ds.global.unibeam.com/.well-known/openid-configuration</code></td></tr>
+                <tr><td>Service Endpoint</td><td><code>https://ds.global.unibeam.com</code></td></tr>
                 <tr><td>App ID</td><td><code>Provided by your Unibeam contact</code></td></tr>
                 <tr><td>Display Name</td><td><code>Unibeam Auth</code> (or any friendly name your employees will recognise)</td></tr>
               </tbody>
@@ -739,21 +739,15 @@
       <div class="subsection" id="sec6s1">
         <div class="subsection-header"><span class="sec-label">6.1</span>&nbsp; Open the Onboarding Link</div>
         <div class="section-body">
-          <p>Your Unibeam contact will send you a unique onboarding URL. Open it in a browser while signed in as a Microsoft Entra administrator. Opening this link will take you directly to Microsoft's admin consent page for Unibeam Auth.</p>
-          <p>The URL follows this pattern:</p>
-          <div class="policy-rule">https://login.microsoftonline.com/organizations/v2.0/adminconsent
-  ?client_id=&lt;UNIBEAM_CLIENT_ID&gt;
-  &amp;scope=https://graph.microsoft.com/.default
-  &amp;redirect_uri=&lt;REDIRECT_URI&gt;
-  &amp;state=&lt;STATE&gt;</div>
-          <div class="callout warn"><div class="callout-title">Note</div><p>Each URL is unique to your tenant. Do not share it with other organizations.</p></div>
+          <p>Your Unibeam contact will send you a unique onboarding URL. Open it in a browser while signed in as a Microsoft Entra administrator. Opening this link will take you directly to Microsoft's permission consent page for Unibeam Auth.</p>
+          <div class="callout warn"><div class="callout-title">Note</div><p>Each URL is unique to your organization. Do not share it with others.</p></div>
 
           <!-- Mockup: Microsoft consent page -->
           <h3>What you will see</h3>
           <div class="mockup-wrap">
             <div class="mockup-bar">
               <div class="mockup-dots"><span class="mockup-dot-r"></span><span class="mockup-dot-y"></span><span class="mockup-dot-g"></span></div>
-              <div class="mockup-url"><span class="lock">🔒</span> login.microsoftonline.com/organizations/v2.0/adminconsent?client_id=…</div>
+              <div class="mockup-url"><span class="lock">🔒</span> login.microsoftonline.com — Unibeam Auth permissions request</div>
             </div>
             <div class="mockup-body ms-consent">
               <div class="ms-consent-header">
@@ -803,7 +797,7 @@
       <div class="subsection" id="sec6s2">
         <div class="subsection-header"><span class="sec-label">6.2</span>&nbsp; Grant Microsoft Consent</div>
         <div class="section-body">
-          <p>On the consent page, review the permissions and click <strong>Accept</strong>. After you accept, Microsoft redirects the browser to the Unibeam onboarding endpoint. Unibeam automatically records your <code>tenantId</code> and completes the tenant registration — no further action is needed in this step.</p>
+          <p>On the consent page, review the permissions and click <strong>Accept</strong>. After you accept, Microsoft redirects the browser to the Unibeam onboarding endpoint. Unibeam automatically records your organization and completes the registration — no further action is needed in this step.</p>
           <div class="callout"><div class="callout-title">One-time action</div><p>This consent step applies once per tenant. You will not be prompted again.</p></div>
         </div>
       </div>
@@ -905,7 +899,7 @@
               <tbody>
                 <tr><td><strong>Display Name</strong></td><td>Unibeam Auth <span style="color:#6b7280;font-size:11px;">(we suggest using a name your employees will know and recognise)</span></td></tr>
                 <tr><td><strong>Client ID</strong></td><td>Provided by your Unibeam contact</td></tr>
-                <tr><td><strong>Discovery Endpoint</strong></td><td><code>https://ds.global.unibeam.com/.well-known/openid-configuration</code></td></tr>
+                <tr><td><strong>Service Endpoint</strong></td><td><code>https://ds.global.unibeam.com</code></td></tr>
                 <tr><td><strong>App ID</strong></td><td>Provided by your Unibeam contact</td></tr>
               </tbody>
             </table>
@@ -933,7 +927,7 @@
               </div>
               <div style="margin-bottom:12px;">
                 <div style="font-size:11px;font-weight:600;color:#323130;margin-bottom:4px;">Discovery endpoint <span style="color:#c50f1f;">*</span></div>
-                <input style="width:100%;padding:6px 10px;border:1px solid #8a8886;border-radius:2px;font-size:11px;color:#323130;background:#fff;" value="https://ds.global.unibeam.com/.well-known/openid-configuration" readonly/>
+                <input style="width:100%;padding:6px 10px;border:1px solid #8a8886;border-radius:2px;font-size:11px;color:#323130;background:#fff;" value="https://ds.global.unibeam.com" readonly/>
               </div>
               <div style="margin-bottom:18px;">
                 <div style="font-size:11px;font-weight:600;color:#323130;margin-bottom:4px;">App ID <span style="color:#c50f1f;">*</span></div>
