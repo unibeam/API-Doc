@@ -574,7 +574,7 @@
               <tbody>
                 <tr><td>1</td><td>User</td><td>Submits primary credential (password) to Entra.</td></tr>
                 <tr><td>2</td><td>Entra</td><td>Validates password and delegates the second factor to Unibeam.</td></tr>
-                <tr><td>3</td><td>Unibeam</td><td>Identifies the user's registered mobile number and initiates a silent SIM authentication challenge.</td></tr>
+                <tr><td>3</td><td>Unibeam</td><td>Identifies the user's registered mobile number and email address, then initiates a silent SIM authentication challenge.</td></tr>
                 <tr><td>4</td><td>SIM</td><td>The Unibeam Applet on the SIM performs a challenge-response with the employee to grant a validated authentication of the employee. No user interaction. No code. No push notification.</td></tr>
                 <tr><td>5</td><td>Unibeam</td><td>Receives confirmation from the Applet and issues a signed identity confirmation to Entra including the <code>SIMId</code>, <code>DeviceId</code>, and <code>ChangeTimestamp</code>.</td></tr>
                 <tr><td>6</td><td>Entra</td><td>Verifies the confirmation against Unibeam's service and grants the session.</td></tr>
@@ -662,7 +662,7 @@
           <div class="table-wrap">
             <table class="kv-table">
               <tbody>
-                <tr><td>Read</td><td>User's registered mobile number — to route the SIM challenge</td></tr>
+                <tr><td>Read</td><td>User's registered mobile number and email address — to identify and route the SIM challenge</td></tr>
                 <tr><td>Write</td><td><code>SIMId</code>, <code>DeviceId</code>, <code>ChangeTimestamp</code> as Custom Security Attributes on the user object</td></tr>
                 <tr><td>No access</td><td>Passwords, group membership, email, calendar, files, or any other directory data</td></tr>
               </tbody>
